@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 @app.route("/get_posts")
 def get_posts():
     posts = mongo.db.posts.find()
-    return render_template("posts.html", posts=posts)
+    return render_template("posts.html", posts=posts, title="Home")
 
 
 if __name__ == "__main__":
