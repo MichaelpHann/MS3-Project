@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="light-blue text-darken-4 center-align">Add Post</h3>
+    <h3 class="blue-grey-text darken-4 center-align">New Post</h3>
 
     <div class="row card-panel grey lighten-5">
-        <form class="col s12 m8 offset-m2" method = "POST" action="">
+        <form class="col s12 m8 offset-m2" method = "POST" action="{{ url_for('new_post') }}">
+            <!-- Category -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">category</i>
+                    <i class="material-icons prefix">folder</i>
                     <select id="category_name" name="category_name" class="validate" required>
                         <option value="" disabled selected>Select Category</option>
                         {% for category in categories %}
@@ -17,18 +18,29 @@
                     <label for="category_name">Materialize Select</label>
                 </div>
             </div>
+            <!-- Post title -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">text_fields</i>
+                    <i class="material-icons  prefix">text_fields</i>
                     <input id="post_title" name="post_title" minlength="5" maxlength="75" type="text" class="validate" required>
                     <label for="post_title">Post Title</label>
                 </div>
             </div>
+            <!-- Content -->
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">notes</i>
+                    <i class="material-icons  prefix">notes</i>
                     <textarea id="post_content" name="post_content" class="materialize-textarea validate" required></textarea>
                     <label for="post_content">Content</label>
+                </div>
+            </div>
+            <!-- Publish post button -->
+            <div class="row">
+                <div class="col s12 center-align">
+                    <button type="submit" class="btn-large lime lighten-2 black-text text-shadow waves-effect waves-light">
+                        <span>Publish Post</span>
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
             </div>
         </form>

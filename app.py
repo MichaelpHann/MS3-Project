@@ -101,8 +101,19 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/new_post")
+@app.route("/new_post", methods=["GET", "POST"])
 def new_post():
+    if request.method == "POST":
+        post = {
+            "category_name": request.form.get("category_name"),
+            "post_title": request.form.get("post_title"),
+            "post_content": request.form.get("post_content"),
+            "created_by": session["user"]
+        }
+        mongo.db.posts.insert_one(post)
+        flash("Post Successfully Published!")
+        return redirect(url_for("get_posts"))
+
     categories = mongo.db.categories.find().sort("category_name", 1)
     return render_template("new_post.html", categories=categories)
 
