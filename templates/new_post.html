@@ -3,18 +3,32 @@
 
     <h3 class="light-blue text-darken-4 center-align">Add Post</h3>
 
-    <div class="row">
+    <div class="row card-panel grey lighten-5">
         <form class="col s12 m8 offset-m2" method = "POST" action="">
             <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="icon_prefix" type="text" class="validate">
-                    <label for="icon_prefix">First Name</label>
+                    <i class="material-icons prefix">category</i>
+                    <select id="category_name" name="category_name" class="validate" required>
+                        <option value="" disabled selected>Select Category</option>
+                        {% for category in categories %}
+                            <option value="{{ category.category_name }}">{{ category.category_name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="category_name">Materialize Select</label>
                 </div>
+            </div>
+            <div class="row">
                 <div class="input-field col s12">
-                    <i class="material-icons prefix">phone</i>
-                    <input id="icon_telephone" type="tel" class="validate">
-                    <label for="icon_telephone">Telephone</label>
+                    <i class="material-icons prefix">text_fields</i>
+                    <input id="post_title" name="post_title" minlength="5" maxlength="75" type="text" class="validate" required>
+                    <label for="post_title">Post Title</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">notes</i>
+                    <textarea id="post_content" name="post_content" class="materialize-textarea validate" required></textarea>
+                    <label for="post_content">Content</label>
                 </div>
             </div>
         </form>
