@@ -118,6 +118,14 @@ def new_post():
     return render_template("new_post.html", categories=categories)
 
 
+@app.route("/edit_post/<post_id>", methods=["GET", "POST"])
+def edit_post(post_id):
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id)})
+
+    categories = mongo.db.categories.find().sort("category_name", 1)
+    return render_template("edit_post.html", post=post, categories=categories)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
