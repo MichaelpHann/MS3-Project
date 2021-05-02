@@ -2,6 +2,7 @@ $(document).ready(function(){
     $(".sidenav").sidenav({edge: "right"});
     $(".collapsible").collapsible();
     $('select').formSelect();
+    $(".tooltipped").tooltip();
 
     validateMaterializeSelect();
     function validateMaterializeSelect() {

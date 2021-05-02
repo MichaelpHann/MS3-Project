@@ -25,8 +25,11 @@ def get_posts():
     return render_template("posts.html", posts=posts, title="Home")
 
 
-@app.route("/register", methods=["GET", "POST"])
-def register():
+# Create an account
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    """
+    """
     if request.method == "POST":
         # Check if username already exists in database
         existing_user = mongo.db.users.find_one(
@@ -49,7 +52,7 @@ def register():
         flash("Registration Successful!")
         return redirect(url_for("profile", username=session["user"]))
 
-    return render_template("register.html")
+    return render_template("signup.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
