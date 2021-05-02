@@ -31,8 +31,9 @@
                 <i class="material-icons">menu</i>
             </a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="{{ url_for('get_posts') }}">Home</a></li>
+                <li><a href="{{ url_for('homepage') }}">Home</a></li>
                 {% if session.user %}
+                    <li><a href="#{{ url_for('get_posts') }}">Explore</a></li>
                     <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                     <li><a href="{{ url_for('new_post') }}">New Post</a></li>
                     {% if session.user|lower ==  "admin"|lower %}
@@ -52,8 +53,9 @@
     <ul class="sidenav" id="mobile-links">
         <li class="center-align blue-grey-text"><h4>Commonplace</h4></li>
         <hr>
-        <li><a href="{{ url_for('get_posts') }}">Home</a></li>
+        <li><a href="{{ url_for('homepage') }}">Home</a></li>
         {% if session.user %}
+            <li><a href="#{{ url_for('get_posts') }}">Explore</a></li>
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
             <li><a href="#{{ url_for('new_post') }}">New Post</a></li>
             {% if session.user|lower ==  "admin"|lower %}
