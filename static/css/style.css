@@ -1,4 +1,6 @@
 body {
+    background: #f0efef;
+    color: #5a5a5a;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -7,6 +9,18 @@ body {
 main {
     flex 1 0 auto;
     min-height: 50vh;
+}
+
+.btn {
+    border-radius: 5px;
+}
+
+.card {
+    border-radius: 5px;
+}
+
+h4 {
+    margin-top: 20px;
 }
 
 .page-footer {
@@ -20,11 +34,54 @@ main {
     padding: 0;
 }
 
-.flashes h4 {
-    line-height: 2;
+#blog-search {
+    padding: 20px 0 0 0;
+    margin: 0;
 }
 
 .card .card-action div {
     padding: 0;
     line-height: 50px;
+}
+
+.categories-card {
+    margin: 30px 0;
+    padding-bottom: 10px;
+    /* max-width: 50vw; */
+    background: #f0efef;
+}
+
+.categories-card .card-action {
+    border: none;
+}
+
+.category-row {
+    margin: 5px 10px;
+    background: #f0efef;
+}
+
+.card .category-content {
+    padding: 0;
+    font-size: 10px;
+}
+
+.card .category-content .category-title {
+    margin: 0;
+}
+
+#add-category-btn {
+    padding: 0;
+    color: #5a5a5a;
+    border-radius: 100%;
+    height: 75px;
+    width: 75px;
+
+    font-size: 3rem;
+}
+
+#add-category-btn .btn-large i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100;
 }

@@ -35,6 +35,13 @@ def get_posts():
     return render_template("posts.html", posts=posts, title="Blogs")
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    posts = list(coll_posts.find({"$text": {"$search": query}}))
+    return render_template("posts.html", posts=posts, title="Blogs")
+
+
 # Create an account
 @app.route("/signup", methods=["GET", "POST"])
 def signup():

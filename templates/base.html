@@ -22,7 +22,7 @@
         <title>Blog Posts</title>
     {% endif %}
 </head>
-<body>
+<body grey lighten-1>
     <!-- navbar -->
     <nav class="nav-wrapper blue-grey">
         <div class="container">
@@ -33,7 +33,7 @@
             <ul class="right hide-on-med-and-down">
                 <li><a href="{{ url_for('homepage') }}">Home</a></li>
                 {% if session.user %}
-                    <li><a href="#{{ url_for('get_posts') }}">Explore</a></li>
+                    <li><a href="{{ url_for('get_posts') }}">Explore</a></li>
                     <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
                     <li><a href="{{ url_for('new_post') }}">New Post</a></li>
                     {% if session.user|lower ==  "admin"|lower %}
@@ -55,7 +55,7 @@
         <hr>
         <li><a href="{{ url_for('homepage') }}">Home</a></li>
         {% if session.user %}
-            <li><a href="#{{ url_for('get_posts') }}">Explore</a></li>
+            <li><a href="{{ url_for('get_posts') }}">Explore</a></li>
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
             <li><a href="#{{ url_for('new_post') }}">New Post</a></li>
             {% if session.user|lower ==  "admin"|lower %}
@@ -74,7 +74,7 @@
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
-                    <div class="row flashes">
+                    <div class="row card-panel">
                         <h4 class="light-blue lighten-4 center-align">{{ message }}</h4>
                     </div>
                 {% endfor %}
