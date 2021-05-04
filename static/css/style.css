@@ -23,6 +23,13 @@ h4 {
     margin-top: 20px;
 }
 
+hr {
+    border: 0;
+    height: 1px;
+    background: rgb(90, 89, 89);
+    background-image: linear-gradient(to right, #ccc, rgb(192, 192, 192), #ccc);
+}
+
 .page-footer {
     padding: 0;
 }
@@ -39,9 +46,24 @@ h4 {
     margin: 0;
 }
 
-.card .card-action div {
-    padding: 0;
-    line-height: 50px;
+.post-content {
+    min-height: 75px;
+    white-space: pre-wrap;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+}
+
+.post-actions {
+    max-height: 30px;
+    margin: 8px 0 0 0;
+}
+
+.edit-post-content .row {
+    margin: 0;
 }
 
 .categories-card {

@@ -2,35 +2,35 @@
 {% block content %}
 
 <div class="row">
-        <div class="col s12 m8 offset-m2">    
-<div class="card-panel s12 m4 offset-m4 categories-card">
-        <h4 class="categories-header center-align">Manage Categories</h4>
-        <hr>
-        <div class="row valign-wrapper">
-            <div class="col s12 m8">
-                {% for category in categories %}
-                    <div class="row category-row valign-wrapper">
-                                <div class="col s12 m3 offset-s1">
-                                    <div class="card-content category-content valign-wrapper">
-                                        <span class="card-title category-title">{{ category.category_name }}</span>
-                                    </div>
-                                </div>
-                                <div class="col s12 m8">
-                                    <div class="card-action">
-                                        <a href="{{ url_for('edit_category', category_id=category._id) }}" class="btn transparent teal-text darken-3"><strong>Edit</strong></a>
-                                        <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn transparent red-text darken-1">Delete</a>
-                                    </div>
-                                </div>
+    <div class="col s12 m8 offset-m2">    
+        <div class="card-panel s12 m4 offset-m4 categories-card">
+                <h4 class="categories-header center-align">Manage Categories</h4>
+                <hr>
+                <div class="row valign-wrapper">
+                    <div class="col s12 m8">
+                        {% for category in categories %}
+                            <div class="row category-row valign-wrapper">
+                                        <div class="col s12 m3 offset-s1">
+                                            <div class="card-content category-content valign-wrapper">
+                                                <span class="card-title category-title">{{ category.category_name }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col s12 m8">
+                                            <div class="card-action">
+                                                <a href="{{ url_for('edit_category', category_id=category._id) }}" class="btn transparent teal-text darken-3"><strong>Edit</strong></a>
+                                                <a href="{{ url_for('delete_category', category_id=category._id) }}" class="btn transparent red-text darken-1">Delete</a>
+                                            </div>
+                                        </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
-            </div>
-            <div class="col s12 m3">
-                <a href="{{ url_for('new_category') }}" id="add-category-btn" class="btn-large lime lighten-2 text-shadow waves-effect waves-light">
-                    <i class="material-icons">add_circle</i>
-                </a>
+                    <div class="col s12 m3">
+                        <a href="{{ url_for('new_category') }}" id="add-category-btn" class="btn-large lime lighten-2 text-shadow waves-effect waves-light">
+                            <i class="material-icons">add_circle</i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-    </div>
     </div>  
 {% endblock %}
