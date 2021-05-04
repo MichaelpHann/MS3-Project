@@ -56,13 +56,15 @@ def signup():
             flash("Username already exists")
             return redirect(url_for("signup"))
 
-        signup = {
+        user = {
             "first_name": request.form.get("firstname").lower(),
             "last_name": request.form.get("lastname").lower(),
             "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "user_posts": [],
+            "fav_posts": []
         }
-        coll_users.insert_one(signup)
+        coll_users.insert_one(user)
 
         # Put new user into 'session' cookie
         session["user"] = request.form.get("username").lower()
@@ -104,11 +106,11 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     # Grab session user's name from database
-    username = coll_users.find_one(
-        {"username": session["user"]})["username"]
+    first_name = coll_users.find_one(
+        {"username": session["user"]})["first_name"]
     
     if session["user"]:
-        return render_template("profile.html", username=username)
+        return render_template("profile.html", first_name=first_name)
 
     return redirect(url_for("login"))
 
@@ -124,15 +126,27 @@ def logout():
 @app.route("/new_post", methods=["GET", "POST"])
 def new_post():
     if request.method == "POST":
+
+        poster = coll_users.find_one({"username": session["user"]})["_id"]
+
         post = {
             "category_name": request.form.get("category_name"),
             "post_title": request.form.get("post_title"),
             "post_content": request.form.get("post_content"),
-            "created_by": session["user"]
+            "created_by": session["user"],
+            "poster": poster
         }
-        coll_posts.insert_one(post)
+        insertPost = coll_posts.insert_one(post)
+        coll_users.update_one(
+            {"_id": ObjectId(poster)},
+            {"$push": {"user_posts": insertPost.inserted_id}}
+        )
+        coll_categories.update_one(
+            {"category_name": "post.category_name"},
+            {"$push": {"category_posts": insertPost.inserted_id}}
+        )
         flash("Post Successfully Published!")
-        return redirect(url_for("get_posts"))
+        return redirect(url_for("get_posts", post_id=insertPost.inserted_id))
 
     categories = coll_categories.find().sort("category_name", 1)
     return render_template("new_post.html", categories=categories)
@@ -158,7 +172,12 @@ def edit_post(post_id):
 
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
+    user = coll_posts.find_one({"_id": ObjectId(post_id)})["poster"]
     coll_posts.remove({"_id": ObjectId(post_id)})
+    coll_users.update_one(
+        {"_id": ObjectId(user)},
+        {"$pull": {"user_posts": ObjectId(post_id)}}
+    )
     flash("Post Successfully Deleted")
     return redirect(url_for("get_posts"))
 
@@ -173,7 +192,8 @@ def get_categories():
 def new_category():
     if request.method == "POST":
         category = {
-            "category_name": request.form.get("category_name")
+            "category_name": request.form.get("category_name"),
+            "category_posts": []
         }
         coll_categories.insert_one(category)
         flash("New Category Added")
