@@ -19,15 +19,15 @@ main {
     border-radius: 5px;
 }
 
-h4 {
-    margin-top: 20px;
-}
-
 hr {
     border: 0;
     height: 1px;
     background: rgb(90, 89, 89);
     background-image: linear-gradient(to right, #ccc, rgb(192, 192, 192), #ccc);
+}
+
+i.material-icons {
+    margin-left: 0;
 }
 
 .page-footer {
@@ -40,6 +40,31 @@ hr {
 .footer-content .footer-icon {
     padding: 0;
 }
+
+a.edit-btn {
+    color: rgba(2, 134, 81, 0.719);
+    box-shadow: none;
+    border: 1px solid rgb(185, 182, 182);
+    border-radius: 8px;
+}
+
+a.edit-btn:hover {
+    border: 1px solid rgb(94, 92, 92);
+    box-shadow: none;
+}
+
+a.delete-btn {
+    color: rgba(173, 26, 26, 0.685);
+    box-shadow: none;
+    border: 1px solid rgb(185, 182, 182);
+    border-radius: 8px;
+}
+
+a.delete-btn:hover {
+    border: 1px solid rgb(94, 92, 92);
+    box-shadow: none;
+}
+
 
 #blog-search {
     padding: 20px 0 0 0;
@@ -59,18 +84,22 @@ hr {
 
 .post-actions {
     max-height: 30px;
-    margin: 8px 0 0 0;
+    margin: 15px 0 0 0;
 }
 
 .edit-post-content .row {
     margin: 0;
 }
 
+/* Manage Categories */
 .categories-card {
-    margin: 30px 0;
+    margin: 30px 0 0 0;
     padding-bottom: 10px;
-    /* max-width: 50vw; */
     background: #f0efef;
+}
+
+.categories-card .categories-header {
+    margin: 0 0 20px 0;
 }
 
 .categories-card .card-action {
@@ -106,4 +135,41 @@ hr {
     align-items: center;
     justify-content: center;
     height: 100;
+}
+
+/* Edit Category */
+.edit-category-card {
+    margin: 30px 0 0 0;
+    padding-bottom: 10px;
+    background: #f0efef;
+}
+
+.edit-category-card .edit-category-header {
+    margin: 0 0 20px 0;
+}
+
+.edit-category-card .edit-category-form {
+    margin: 10px 0 0 0;
+}
+
+/* New Post */
+.new-post-card {
+    margin: 30px 0 0 0;
+    padding-bottom: 10px;
+    background: #f0efef;
+}
+
+.new-post-card .new-post-header {
+    margin: 0 0 20px 0;
+}
+
+/* Edit Post */
+.edit-post-card {
+    margin: 30px 0 0 0;
+    padding-bottom: 20px;
+    background: #f0efef;
+}
+
+.edit-post-card .edit-post-header {
+    margin: 0 0 20px 0;
 }
