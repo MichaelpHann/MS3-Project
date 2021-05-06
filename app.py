@@ -23,26 +23,36 @@ coll_posts = mongo.db.posts
 coll_categories = mongo.db.categories
 
 
+# Render homepage function
 @app.route("/")
 @app.route("/homepage")
 def homepage():
+    """
+    """
     return render_template("homepage.html", title="Home")
 
 
+# Render existing posts function
 @app.route("/get_posts")
 def get_posts():
+    """
+    """
     posts = list(coll_posts.find())
     return render_template("posts.html", posts=posts, title="Blogs")
 
 
+# Search function
 @app.route("/search", methods=["GET", "POST"])
 def search():
+    """
+    """
     query = request.form.get("query")
-    posts = list(coll_posts.find({"$text": {"$search": query}}))
+    posts = list(coll_posts.find(
+        {"$text": {"$search": query}}))
     return render_template("posts.html", posts=posts, title="Blogs")
 
 
-# Create an account
+# Create account function
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     """
@@ -74,8 +84,11 @@ def signup():
     return render_template("signup.html")
 
 
+# Login function
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    """
+    """
     if request.method == "POST":
         # Check if username exists in database
         existing_user = coll_users.find_one(
@@ -103,8 +116,11 @@ def login():
     return render_template("login.html")
 
 
+# Render user's profile function
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    """
+    """
     # Grab session user's name from database
     first_name = coll_users.find_one(
         {"username": session["user"]})["first_name"]
@@ -115,16 +131,22 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+# Logout function
 @app.route("/logout")
 def logout():
+    """
+    """
     # remove user from session cookies
     flash("You have been logged out")
     session.pop("user")
     return redirect(url_for("login"))
 
 
+# Create new post function
 @app.route("/new_post", methods=["GET", "POST"])
 def new_post():
+    """
+    """
     if request.method == "POST":
 
         poster = coll_users.find_one({"username": session["user"]})["_id"]
@@ -134,7 +156,8 @@ def new_post():
             "post_title": request.form.get("post_title"),
             "post_content": request.form.get("post_content"),
             "created_by": session["user"],
-            "poster": poster
+            "poster": poster,
+            "favourites": 0
         }
         insertPost = coll_posts.insert_one(post)
         coll_users.update_one(
@@ -152,8 +175,11 @@ def new_post():
     return render_template("new_post.html", categories=categories)
 
 
+# Edit user's post function
 @app.route("/edit_post/<post_id>", methods=["GET", "POST"])
 def edit_post(post_id):
+    """
+    """
     if request.method == "POST":
         publish = {
             "category_name": request.form.get("category_name"),
@@ -170,10 +196,15 @@ def edit_post(post_id):
     return render_template("edit_post.html", post=post, categories=categories)
 
 
+# Delete user's post function
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
-    user = coll_posts.find_one({"_id": ObjectId(post_id)})["poster"]
-    coll_posts.remove({"_id": ObjectId(post_id)})
+    """
+    """
+    user = coll_posts.find_one(
+        {"_id": ObjectId(post_id)})["poster"]
+    coll_posts.remove(
+        {"_id": ObjectId(post_id)})
     coll_users.update_one(
         {"_id": ObjectId(user)},
         {"$pull": {"user_posts": ObjectId(post_id)}}
@@ -182,14 +213,56 @@ def delete_post(post_id):
     return redirect(url_for("get_posts"))
 
 
+# Add post to user's favourites function
+@app.route("/add_favourite/<post_id>")
+def add_favourite(post_id):
+    """
+    """
+    if "user" in session:
+        user = coll_users.find_one(
+            {"username": session["user"]})["_id"]
+        coll_users.update_one(
+            {"_id": ObjectId(user)}, 
+            {"$push": {"fav_posts": ObjectId(post_id)}})
+        coll_posts.update(
+            {"_id": ObjectId(post_id)}, {"$inc": {"favourites": 1}})
+        return redirect(url_for("get_posts", post_id=post_id))
+    else:
+        flash("Log in to like this blog")
+
+
+# Remove post from user's favourites function
+@app.route("/remove_favourite/<post_id>")
+def remove_favourite(post_id):
+    """
+    """
+    if "user" in session:
+        user = coll_users.find_one(
+            {"username": session["user"]})["_id"]
+        coll_users.update_one(
+            {"_id": ObjectId(user)}, 
+            {"$pull": {"fav_posts": ObjectId(post_id)}})
+        coll_posts.update(
+            {"_id": ObjectId(post_id)}, {"$inc": {"favourites": -1}})
+        return redirect(url_for("get_posts", post_id=post_id))
+    else:
+        flash("Log in to complete this action")
+
+
+# Render categories function
 @app.route("/get_categories")
 def get_categories():
+    """
+    """
     categories = list(coll_categories.find().sort("category_name", 1))
     return render_template("categories.html", categories=categories)
 
 
+# Create new category function
 @app.route("/new_category", methods=["GET", "POST"])
 def new_category():
+    """
+    """
     if request.method == "POST":
         category = {
             "category_name": request.form.get("category_name"),
@@ -201,8 +274,11 @@ def new_category():
     return render_template("new_category.html")
 
 
+# Edit category function
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
+    """
+    """
     if request.method == "POST":
         submit = {
             "category_name": request.form.get("category_name")
@@ -215,8 +291,11 @@ def edit_category(category_id):
     return render_template("edit_category.html", category=category)
 
 
+# Delete category function
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
+    """
+    """
     coll_categories.remove({"_id": ObjectId(category_id)})
     flash("Category Successfully Deleted")
     return redirect(url_for("get_categories"))

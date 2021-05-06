@@ -102,11 +102,15 @@ a.delete-btn:hover {
     white-space: pre-wrap;
 }
 
-.line-clamp {
+.favourite-heart {
+    color: rgb(141, 35, 35);
+}
+
+/* .line-clamp {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;  
-}
+} */
 
 .post-actions {
     max-height: 30px;
@@ -115,6 +119,10 @@ a.delete-btn:hover {
 
 .edit-post-content .row {
     margin: 0;
+}
+
+.flash-content {
+    margin-top: 2.5rem;
 }
 
 /* Manage Categories */

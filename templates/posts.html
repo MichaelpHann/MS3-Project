@@ -49,8 +49,19 @@
                                         </a>
                                 {% endif %}
                             </div>
-                            <div class="col s6">
-                                <a href="#" class="btn-floating right"><i class="material-icons">favorite_border</i></a>
+                            <div class="col s2 offset-s4">
+                                {% if session.user %}
+                                    {% if post._id in favourites %}
+                                        <a href="{{ url_for('remove_favourite', post_id=post._id) }}" class="tooltipped favourite-heart" data-tooltip="Remove from Favourites">
+                                            <i class="material-icons">
+                                                favorite_border</i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ url_for('add_favourite', post_id=post._id) }}" class="tooltipped" data-tooltip="Add to Favourites">
+                                            <i class="material-icons">favorite</i>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                     </div>
