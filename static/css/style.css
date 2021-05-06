@@ -41,6 +41,32 @@ i.material-icons {
     padding: 0;
 }
 
+a.cancel-btn {
+    color: rgba(219, 92, 8, 0.829);
+    box-shadow: none;
+    border: 1px solid rgb(185, 182, 182);
+    border-radius: 8px;
+}
+
+a.cancel-btn:hover {
+    border: 1px solid rgb(94, 92, 92);
+    box-shadow: none;
+}
+
+.submit-btn {
+    background-color: #cddc39;
+    box-shadow: none;
+    color: #444444;
+    border: 1px solid rgb(185, 182, 182);
+    border-radius: 8px;
+}
+
+.submit-btn:hover {
+    border: 1px solid rgb(94, 92, 92);
+    box-shadow: none;
+    background-color: #b4c013;
+}
+
 a.edit-btn {
     color: rgba(2, 134, 81, 0.719);
     box-shadow: none;
