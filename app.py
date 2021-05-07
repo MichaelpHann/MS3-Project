@@ -61,7 +61,7 @@ def signup():
         # Check if username already exists in database
         existing_user = coll_users.find_one(
             {"username": request.form.get("username").lower()})
-        
+       
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("signup"))
@@ -124,7 +124,7 @@ def profile(username):
     # Grab session user's name from database
     first_name = coll_users.find_one(
         {"username": session["user"]})["first_name"]
-    
+  
     if session["user"]:
         current_user = coll_users.find_one(
             {"username": session["user"]})["_id"]
