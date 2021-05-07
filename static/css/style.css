@@ -106,12 +106,6 @@ a.delete-btn:hover {
     color: rgb(141, 35, 35);
 }
 
-/* .line-clamp {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
-} */
-
 .post-actions {
     max-height: 30px;
     margin: 15px 0 0 0;
@@ -123,6 +117,40 @@ a.delete-btn:hover {
 
 .flash-content {
     margin-top: 2.5rem;
+}
+
+/* Profile */
+.profile-card {
+    margin: 1.5rem 0 0 0;
+}
+
+.profile-header {
+    color: #444444;
+    text-transform: capitalize;
+    margin: 0;
+}
+
+.tabs {
+    background: transparent;
+    border-radius: 5px;
+    padding: 0 .75rem;
+}
+
+.tabs .tab {
+    padding: 0 .75rem;
+}
+
+.tabs .tab a {
+    color: #444444;
+}
+
+.tabs .indicator {
+    background-color: rgb(185, 192, 192);
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background: transparent;
+    color: #444444;
 }
 
 /* Manage Categories */

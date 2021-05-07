@@ -1,8 +1,9 @@
 $(document).ready(function(){
     $(".sidenav").sidenav({edge: "right"});
     $(".collapsible").collapsible();
-    $('select').formSelect();
+    $("select").formSelect();
     $(".tooltipped").tooltip();
+    $(".tabs").tabs();
 
     validateMaterializeSelect();
     function validateMaterializeSelect() {

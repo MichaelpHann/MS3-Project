@@ -126,7 +126,27 @@ def profile(username):
         {"username": session["user"]})["first_name"]
     
     if session["user"]:
-        return render_template("profile.html", first_name=first_name)
+        current_user = coll_users.find_one(
+            {"username": session["user"]})["_id"]
+        user_id = coll_users.find_one(
+            {"username": username})["_id"]
+        if current_user == user_id:
+            own_posts = coll_users.find_one(
+                {"username": username})["user_posts"]
+            fav_posts = coll_users.find_one(
+                {"username": username})["fav_posts"]
+            
+            user_posts = coll_posts.find(
+                {"_id": {"$in": own_posts}})
+            user_favs = coll_posts.find(
+                {"_id": {"$in": fav_posts}})
+
+            return render_template(
+                "profile.html",
+                first_name=first_name,
+                user_posts=user_posts,
+                user_favs=user_favs,
+                title="Blogs")
 
     return redirect(url_for("login"))
 
