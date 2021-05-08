@@ -122,7 +122,8 @@ a.delete-btn:hover {
 
 /* Homepage */
 .homepage-card {
-    margin: 30px;
+    margin: 30px 0 0 0;
+    background: #f0efef;
 }
 
 .homepage-btns-row {
