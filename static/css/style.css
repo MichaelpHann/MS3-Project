@@ -1,5 +1,6 @@
+/* Body / Main / Base Content */
 body {
-    background: #f0efef;
+    background-color: #f0efef;
     color: #5a5a5a;
     display: flex;
     min-height: 100vh;
@@ -22,7 +23,7 @@ main {
 hr {
     border: 0;
     height: 1px;
-    background: rgb(90, 89, 89);
+    background-color: rgb(90, 89, 89);
     background-image: linear-gradient(to right, #ccc, rgb(192, 192, 192), #ccc);
 }
 
@@ -39,6 +40,34 @@ i.material-icons {
 
 .footer-content .footer-icon {
     padding: 0;
+}
+
+/* Buttons */
+.homepage-signin-btn {
+    background-color: #cddc39;
+    color: #444444;
+    border: 1px solid rgb(185, 182, 182);
+    box-shadow: none;
+}
+
+.homepage-signin-btn:hover {
+    background-color: #b4c013;
+    border: 1px solid rgb(94, 92, 92);
+    box-shadow: none;
+    background-color: #b4c013;
+}
+
+.homepage-signup-btn {
+    background-color: #275a94ab;
+    color: #fff;
+    border: 1px solid rgb(185, 182, 182);
+    box-shadow: none;
+}
+
+.homepage-signup-btn:hover {
+    background: #1e4777ab;
+    border: 1px solid rgb(94, 92, 92);
+    box-shadow: none;
 }
 
 a.cancel-btn {
@@ -62,9 +91,9 @@ a.cancel-btn:hover {
 }
 
 .submit-btn:hover {
+    background-color: #b4c013;
     border: 1px solid rgb(94, 92, 92);
     box-shadow: none;
-    background-color: #b4c013;
 }
 
 a.edit-btn {
@@ -91,7 +120,38 @@ a.delete-btn:hover {
     box-shadow: none;
 }
 
+/* Homepage */
+.homepage-card {
+    margin: 30px;
+}
 
+.homepage-btns-row {
+    margin: 50px 0;
+}
+
+/* Sign Up */
+.signup-card {
+    margin: 30px 0 0 0;
+    padding-bottom: 10px;
+    background: #f0efef;
+}
+
+.signup-card .signup-header {
+    margin: 0 0 20px 0;
+}
+
+/* Sign In */
+.signin-card {
+    margin: 30px 0 0 0;
+    padding-bottom: 10px;
+    background: #f0efef;
+}
+
+.signin-card .signin-header {
+    margin: 0 0 20px 0;
+}
+
+/* Blog Posts Page */
 #blog-search {
     padding: 20px 0 0 0;
     margin: 0;
@@ -120,7 +180,7 @@ a.delete-btn:hover {
     margin-top: 2.5rem;
 }
 
-/* Profile */
+/* Profile Page */
 .profile-card {
     margin: 1.5rem 0 0 0;
 }
@@ -154,7 +214,7 @@ a.delete-btn:hover {
     color: #444444;
 }
 
-/* Manage Categories */
+/* Manage Categories Page */
 .categories-card {
     margin: 30px 0 0 0;
     padding-bottom: 10px;
@@ -197,7 +257,7 @@ a.delete-btn:hover {
     margin: 0 0 20px 0;
 }
 
-/* Edit Category */
+/* Edit Category Page */
 .edit-category-card {
     margin: 30px 0 0 0;
     padding-bottom: 10px;
@@ -212,7 +272,7 @@ a.delete-btn:hover {
     margin: 10px 0 0 0;
 }
 
-/* New Post */
+/* New Post Page */
 .new-post-card {
     margin: 30px 0 0 0;
     padding-bottom: 10px;
@@ -228,7 +288,7 @@ a.delete-btn:hover {
     color: #5a5a5a;
 }
 
-/* Edit Post */
+/* Edit Post Page */
 .edit-post-card {
     margin: 30px 0 0 0;
     padding-bottom: 20px;

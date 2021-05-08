@@ -81,7 +81,7 @@ def signup():
         flash("Sign Up Successful!")
         return redirect(url_for("profile", username=session["user"]))
 
-    return render_template("signup.html")
+    return render_template("signup.html", title="Sign Up")
 
 
 # Login function
@@ -102,18 +102,18 @@ def login():
                     flash("Welcome back, {}".format(
                         request.form.get("username")))
                     return redirect(url_for(
-                        "profile", username=session["user"]))
+                        "profile", username=session["user"], title="Profile"))
             else:
                 # Invalid password match
                 flash("Incorrect Username and/or Password")
-                return redirect(url_for("login"))
+                return redirect(url_for("login", title="Login"))
 
         else:
             # Username doesn't exist
             flash("Incorrect Username and/or Password")
             return redirect(url_for("login"))
 
-    return render_template("login.html")
+    return render_template("login.html", title="Login")
 
 
 # Render user's profile function
@@ -146,7 +146,7 @@ def profile(username):
                 first_name=first_name,
                 user_posts=user_posts,
                 user_favs=user_favs,
-                title="Blogs")
+                title="Profile")
 
     return redirect(url_for("login"))
 
@@ -189,7 +189,7 @@ def new_post():
         return redirect(url_for("get_posts", post_id=insertPost.inserted_id))
 
     categories = coll_categories.find().sort("category_name", 1)
-    return render_template("new_post.html", categories=categories)
+    return render_template("new_post.html", categories=categories, title="New Post")
 
 
 # Edit user's post function
@@ -205,12 +205,12 @@ def edit_post(post_id):
             "created_by": session["user"]
         }
         coll_posts.update({"_id": ObjectId(post_id)}, publish)
-        flash("Post Successfully Updated")
+        flash("Post Updated!")
         return redirect(url_for("get_posts"))
 
     post = coll_posts.find_one({"_id": ObjectId(post_id)})
     categories = coll_categories.find().sort("category_name", 1)
-    return render_template("edit_post.html", post=post, categories=categories)
+    return render_template("edit_post.html", post=post, categories=categories, title="Edit Post")
 
 
 # Delete user's post function
@@ -245,7 +245,7 @@ def add_favourite(post_id):
             {"_id": ObjectId(post_id)}, {"$inc": {"favourites": 1}})
         return redirect(url_for("get_posts", post_id=post_id))
     else:
-        flash("Log in to like this blog")
+        flash("You need to log in to like this!")
 
 
 # Remove post from user's favourites function
@@ -272,7 +272,7 @@ def get_categories():
     """
     """
     categories = list(coll_categories.find().sort("category_name", 1))
-    return render_template("categories.html", categories=categories)
+    return render_template("categories.html", categories=categories, title="Blog Categories")
 
 
 # Create new category function
@@ -287,7 +287,7 @@ def new_category():
         coll_categories.insert_one(category)
         flash("New Category Added")
         return redirect(url_for("get_categories"))
-    return render_template("new_category.html")
+    return render_template("new_category.html", title="New Category")
 
 
 # Edit category function
@@ -300,11 +300,11 @@ def edit_category(category_id):
             "category_name": request.form.get("category_name")
         }
         coll_categories.update({"_id": ObjectId(category_id)}, submit)
-        flash("Category Successfully Updated")
+        flash("Category Updated")
         return redirect(url_for("get_categories"))
 
     category = coll_categories.find_one({"_id": ObjectId(category_id)})
-    return render_template("edit_category.html", category=category)
+    return render_template("edit_category.html", category=category, title="Edit Category")
 
 
 # Delete category function
@@ -313,7 +313,7 @@ def delete_category(category_id):
     """
     """
     coll_categories.remove({"_id": ObjectId(category_id)})
-    flash("Category Successfully Deleted")
+    flash("Category Deleted")
     return redirect(url_for("get_categories"))
 
 

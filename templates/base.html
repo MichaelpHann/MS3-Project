@@ -12,14 +12,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" type="text/css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/png" href="static/images/favicon.png">
 
     {% block styles %}
     {% endblock %}
 
     {% if title %}
-        <title>Blog Posts - {{ title }}</title>
+        <title>Commonplace - {{ title }}</title>
     {% else %}
-        <title>Blog Posts</title>
+        <title>Commonplace</title>
     {% endif %}
 </head>
 <body grey lighten-1>

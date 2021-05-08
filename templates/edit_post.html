@@ -12,7 +12,6 @@
                         <div class="input-field col s12">
                             <i class="material-icons prefix">folder</i>
                             <select id="category_name" name="category_name" class="edit-post-category validate" required>
-                                <option class="edit-post-category" value="" disabled>Select Category</option>
                                 {% for category in categories %}
                                     {% if category.category_name == post.category_name %}
                                         <option value="{{ category.category_name }}" selected>{{ category.category_name }}</option>
@@ -48,7 +47,7 @@
                             <!-- cancel button -->
                             <a href="{{ url_for('get_posts') }}" class="btn cancel-btn transparent">
                                 <strong>Cancel</strong>
-                                <i class="material-icons right"><strong>cancel</strong></i>
+                                <i class="material-icons right"><strong>chevron_right</strong></i>
                             </a>
                             <!-- publish post button -->
                             <button type="submit" class="btn submit-btn waves-effect waves-light">
