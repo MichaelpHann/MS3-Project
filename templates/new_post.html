@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">folder</i>
-                        <select id="category_name" name="category_name" class="validate" required>
+                        <select id="category_name" name="category_name" class="new-post-category validate" required>
                             <option value="" disabled selected>Select Category</option>
                             {% for category in categories %}
                                 <option value="{{ category.category_name }}">{{ category.category_name }}</option>
@@ -24,8 +24,8 @@
                 <!-- Post title -->
                 <div class="row">
                     <div class="input-field col s12">
-                        <i class="material-icons  prefix">text_fields</i>
-                        <input id="post_title" name="post_title" minlength="5" maxlength="75" type="text" class="validate" required>
+                        <i class="material-icons prefix">text_fields</i>
+                        <input id="post_title" name="post_title" minlength="5" maxlength="75" type="text" class="new-post-title  validate" required>
                         <label for="post_title">Post Title</label>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <i class="material-icons  prefix">notes</i>
-                        <textarea id="post_content" name="post_content" class="materialize-textarea validate" required></textarea>
+                        <textarea id="post_content" name="post_content" class="materialize-textarea new-post-content validate" required></textarea>
                         <label for="post_content">Content</label>
                     </div>
                 </div>

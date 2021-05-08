@@ -100,6 +100,7 @@ a.delete-btn:hover {
 .post-content {
     min-height: 75px;
     white-space: pre-wrap;
+    color: #5a5a5a;
 }
 
 .favourite-heart {
@@ -216,10 +217,15 @@ a.delete-btn:hover {
     margin: 30px 0 0 0;
     padding-bottom: 10px;
     background: #f0efef;
+    
 }
 
 .new-post-card .new-post-header {
     margin: 0 0 20px 0;
+}
+
+.new-post-category, .new-post-title, .new-post-content {
+    color: #5a5a5a;
 }
 
 /* Edit Post */
@@ -231,4 +237,8 @@ a.delete-btn:hover {
 
 .edit-post-card .edit-post-header {
     margin: 0 0 20px 0;
+}
+
+.edit-post-category, .edit-post-title, .edit-post-content {
+    color: #5a5a5a;
 }

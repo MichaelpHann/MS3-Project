@@ -184,10 +184,7 @@ def new_post():
             {"_id": ObjectId(poster)},
             {"$push": {"user_posts": insertPost.inserted_id}}
         )
-        coll_categories.update_one(
-            {"category_name": "post.category_name"},
-            {"$push": {"category_posts": insertPost.inserted_id}}
-        )
+        
         flash("Post Successfully Published!")
         return redirect(url_for("get_posts", post_id=insertPost.inserted_id))
 
@@ -238,7 +235,7 @@ def delete_post(post_id):
 def add_favourite(post_id):
     """
     """
-    if "user" in session:
+    if session["user"]:
         user = coll_users.find_one(
             {"username": session["user"]})["_id"]
         coll_users.update_one(
@@ -285,8 +282,7 @@ def new_category():
     """
     if request.method == "POST":
         category = {
-            "category_name": request.form.get("category_name"),
-            "category_posts": []
+            "category_name": request.form.get("category_name")
         }
         coll_categories.insert_one(category)
         flash("New Category Added")
