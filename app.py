@@ -36,6 +36,9 @@ def homepage():
 @app.route("/get_posts")
 def get_posts():
     """
+    Fetches all blog posts from the database, renders the
+    main blog posts page and displays all existing blog posts
+    to the page.
     """
     posts = list(coll_posts.find())
     return render_template("posts.html", posts=posts, title="Blogs")
@@ -45,6 +48,9 @@ def get_posts():
 @app.route("/search", methods=["GET", "POST"])
 def search():
     """
+    Enables the user to search within the Post Title and Post Content
+    for all existing blog posts. Renders the main blog post page with
+    returned posts.
     """
     query = request.form.get("query")
     posts = list(coll_posts.find(
@@ -56,6 +62,10 @@ def search():
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     """
+    Checks if the submitted username already exists in the database.
+    If it does then user is presented with flash message. Otherwise,
+    inputted user info is collated and passed to the databse. The new
+    user is then put into session, with the Profile page rendered.
     """
     if request.method == "POST":
         # Check if username already exists in database
@@ -88,6 +98,12 @@ def signup():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     """
+    Checks if the submitted username exists in the database. If
+    username doesn't exist, flash message appears. If username
+    does exits, it checks that the input password matches with
+    the username. If it does match, user is put into a user
+    session. If the password does not match, a flash message is
+    presented to user.
     """
     if request.method == "POST":
         # Check if username exists in database
@@ -120,33 +136,34 @@ def login():
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     """
+    Accesses user's name from database and displays on
+    profile page.
+    If user is in session, identifies user's own blog
+    posts and those user has "favourited" and displays
+    them on the rendered Profile page.
     """
     # Grab session user's name from database
     first_name = coll_users.find_one(
         {"username": session["user"]})["first_name"]
   
+    # Grabs user posts and favourites from database
     if session["user"]:
-        current_user = coll_users.find_one(
-            {"username": session["user"]})["_id"]
-        user_id = coll_users.find_one(
-            {"username": username})["_id"]
-        if current_user == user_id:
-            own_posts = coll_users.find_one(
-                {"username": username})["user_posts"]
-            fav_posts = coll_users.find_one(
-                {"username": username})["fav_posts"]
+        own_posts = coll_users.find_one(
+            {"username": username})["user_posts"]
+        fav_posts = coll_users.find_one(
+            {"username": username})["fav_posts"]
             
-            user_posts = coll_posts.find(
-                {"_id": {"$in": own_posts}})
-            user_favs = coll_posts.find(
-                {"_id": {"$in": fav_posts}})
+        user_posts = coll_posts.find(
+            {"_id": {"$in": own_posts}})
+        user_favs = coll_posts.find(
+            {"_id": {"$in": fav_posts}})
 
-            return render_template(
-                "profile.html",
-                first_name=first_name,
-                user_posts=user_posts,
-                user_favs=user_favs,
-                title="Profile")
+        return render_template(
+            "profile.html",
+            first_name=first_name,
+            user_posts=user_posts,
+            user_favs=user_favs,
+            title="Profile")
 
     return redirect(url_for("login"))
 
@@ -155,6 +172,8 @@ def profile(username):
 @app.route("/logout")
 def logout():
     """
+    Logs user out, deleting the user's session cooke.
+    Renders the Login page.
     """
     # remove user from session cookies
     flash("You have been logged out")
@@ -166,6 +185,11 @@ def logout():
 @app.route("/new_post", methods=["GET", "POST"])
 def new_post():
     """
+    Identifies the current user's id. Collates the blog
+    post inputs and inserts them to the database - both
+    in the Posts collection and in the Users user_posts
+    section. Renders the main blog posts page and displays
+    the new post, along with all other existing posts.
     """
     if request.method == "POST":
 
@@ -189,13 +213,19 @@ def new_post():
         return redirect(url_for("get_posts", post_id=insertPost.inserted_id))
 
     categories = coll_categories.find().sort("category_name", 1)
-    return render_template("new_post.html", categories=categories, title="New Post")
+    return render_template(
+        "new_post.html", 
+        categories=categories, 
+        title="New Post")
 
 
 # Edit user's post function
 @app.route("/edit_post/<post_id>", methods=["GET", "POST"])
 def edit_post(post_id):
     """
+    Takes submitted user inputs, updates to database and
+    displays updated post on main blog post page, along
+    with other existing posts.
     """
     if request.method == "POST":
         publish = {
@@ -210,13 +240,22 @@ def edit_post(post_id):
 
     post = coll_posts.find_one({"_id": ObjectId(post_id)})
     categories = coll_categories.find().sort("category_name", 1)
-    return render_template("edit_post.html", post=post, categories=categories, title="Edit Post")
+    return render_template(
+        "edit_post.html", 
+        post=post, 
+        categories=categories, 
+        title="Edit Post")
 
 
 # Delete user's post function
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
     """
+    Identifies current user. Accesses posts on
+    database and deletes the post with the identified
+    ObjectId. Also deletes post from User's user_posts
+    section. Displays flash message and renders main
+    blog post page, now without deleted post.
     """
     user = coll_posts.find_one(
         {"_id": ObjectId(post_id)})["poster"]
@@ -234,6 +273,7 @@ def delete_post(post_id):
 @app.route("/add_favourite/<post_id>")
 def add_favourite(post_id):
     """
+
     """
     if session["user"]:
         user = coll_users.find_one(
@@ -266,19 +306,28 @@ def remove_favourite(post_id):
         flash("Log in to complete this action")
 
 
-# Render categories function
+# Display categories function
 @app.route("/get_categories")
 def get_categories():
     """
+    Accesses list of categories from database, sorts into
+    alphabetical order, and displays categories page.
     """
     categories = list(coll_categories.find().sort("category_name", 1))
-    return render_template("categories.html", categories=categories, title="Blog Categories")
+    return render_template(
+        "categories.html", 
+        categories=categories, 
+        title="Blog Categories")
 
 
 # Create new category function
 @app.route("/new_category", methods=["GET", "POST"])
 def new_category():
     """
+    Takes new category name submitted via form and inserts
+    to categories collection on database. Then, renders
+    the categories page, now updated with the new category.
+    Flash message appears to confirm update was successful.
     """
     if request.method == "POST":
         category = {
@@ -294,6 +343,9 @@ def new_category():
 @app.route("/edit_category/<category_id>", methods=["GET", "POST"])
 def edit_category(category_id):
     """
+    Takes submitted user inputs, updates to database and
+    displays updated category on categories page, along
+    with other existing categories.
     """
     if request.method == "POST":
         submit = {
@@ -304,13 +356,20 @@ def edit_category(category_id):
         return redirect(url_for("get_categories"))
 
     category = coll_categories.find_one({"_id": ObjectId(category_id)})
-    return render_template("edit_category.html", category=category, title="Edit Category")
+    return render_template(
+        "edit_category.html", 
+        category=category, 
+        title="Edit Category")
 
 
 # Delete category function
 @app.route("/delete_category/<category_id>")
 def delete_category(category_id):
     """
+    Identifies category via ObjectId and removes from
+    categories section in the database. Flash message
+    displayed to confirm deletion and main categories
+    page rendered, now without the deleted category.
     """
     coll_categories.remove({"_id": ObjectId(category_id)})
     flash("Category Deleted")
