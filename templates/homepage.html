@@ -13,15 +13,23 @@
                     <h5 class="center-align">
                         <em>A place where views come together</em>
                     </h5>
+                    
                     <div class="center-align homepage-btns-row">
-                        <a href="{{ url_for('login') }}" class="btn homepage-signin-btn">
-                            <strong>Sign In</strong>
-                            <i class="material-icons right"><strong>chevron_right</strong></i>
-                        </a>
-                        <a href="{{ url_for('signup') }}" class="btn homepage-signup-btn">
-                            <strong>Sign Up</strong>
-                            <i class="material-icons right"><strong>chevron_right</strong></i>
-                        </a>
+                        {% if session.user %}
+                            <a href="{{ url_for('get_posts') }}" class="btn homepage-signin-btn">
+                                <strong>Explore</strong>
+                                <i class="material-icons right"><strong>chevron_right</strong></i>
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('login') }}" class="btn homepage-signin-btn">
+                                <strong>Sign In</strong>
+                                <i class="material-icons right"><strong>chevron_right</strong></i>
+                            </a>
+                            <a href="{{ url_for('signup') }}" class="btn homepage-signup-btn">
+                                <strong>Sign Up</strong>
+                                <i class="material-icons right"><strong>chevron_right</strong></i>
+                            </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

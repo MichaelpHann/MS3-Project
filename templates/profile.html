@@ -43,20 +43,24 @@
                                 </div>
                                 <div class="col s2 offset-s2">
                                     {% if session.user %}
-                                        {% if post._id in favourites %}
+                                        {% if post._id in fav_posts %}
                                             <a href="{{ url_for('remove_favourite', post_id=post._id) }}" class="tooltipped favourite-heart" data-tooltip="Remove from Favourites">
                                                 <i class="material-icons">
-                                                    favorite_border</i>
+                                                    favorite</i>
                                             </a>
                                         {% else %}
                                             <a href="{{ url_for('add_favourite', post_id=post._id) }}" class="tooltipped" data-tooltip="Add to Favourites">
-                                                <i class="material-icons">favorite</i>
+                                                <i class="material-icons">favorite_border</i>
                                             </a>
                                         {% endif %}
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
+                    </div>
+                {% else %}
+                    <div class="card selection-empty">
+                        <h6 class="center-align ">View all your published posts here!</h6>
                     </div>
                 {% endfor %}
             </div>
@@ -98,6 +102,10 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                {% else %}
+                    <div class="card selection-empty">
+                        <h6 class="center-align">A place for you to curate your favourite posts!</h6>
                     </div>
                 {% endfor %}
             </div>

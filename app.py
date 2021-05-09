@@ -284,8 +284,6 @@ def add_favourite(post_id):
         coll_posts.update(
             {"_id": ObjectId(post_id)}, {"$inc": {"favourites": 1}})
         return redirect(url_for("get_posts", post_id=post_id))
-    else:
-        flash("You need to log in to like this!")
 
 
 # Remove post from user's favourites function
@@ -293,7 +291,7 @@ def add_favourite(post_id):
 def remove_favourite(post_id):
     """
     """
-    if "user" in session:
+    if session["user"]:
         user = coll_users.find_one(
             {"username": session["user"]})["_id"]
         coll_users.update_one(
@@ -302,8 +300,6 @@ def remove_favourite(post_id):
         coll_posts.update(
             {"_id": ObjectId(post_id)}, {"$inc": {"favourites": -1}})
         return redirect(url_for("get_posts", post_id=post_id))
-    else:
-        flash("Log in to complete this action")
 
 
 # Display categories function
