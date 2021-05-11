@@ -91,11 +91,11 @@
                                         {% if post._id in favourites %}
                                             <a href="{{ url_for('remove_favourite', post_id=post._id) }}" class="tooltipped favourite-heart" data-tooltip="Remove from Favourites">
                                                 <i class="material-icons">
-                                                    favorite_border</i>
+                                                    favorite</i>
                                             </a>
                                         {% else %}
-                                            <a href="{{ url_for('add_favourite', post_id=post._id) }}" class="tooltipped" data-tooltip="Add to Favourites">
-                                                <i class="material-icons">favorite</i>
+                                            <a href="{{ url_for('add_favourite', post_id=post._id) }}" class="tooltipped favourite-heart" data-tooltip="Add to favourites">
+                                                <i class="material-icons">favorite_border</i>
                                             </a>
                                         {% endif %}
                                     {% endif %}

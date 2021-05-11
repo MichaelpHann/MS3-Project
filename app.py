@@ -41,7 +41,13 @@ def get_posts():
     to the page.
     """
     posts = list(coll_posts.find())
-    return render_template("posts.html", posts=posts, title="Blogs")
+    favourites = coll_users.find_one(
+            {"username": session["user"]})["fav_posts"]
+    return render_template(
+        "posts.html", 
+        posts=posts, 
+        favourites=favourites, 
+        title="Blogs")
 
 
 # Search function
@@ -142,30 +148,44 @@ def profile(username):
     posts and those user has "favourited" and displays
     them on the rendered Profile page.
     """
-    # Grab session user's name from database
-    first_name = coll_users.find_one(
-        {"username": session["user"]})["first_name"]
-  
-    # Grabs user posts and favourites from database
     if session["user"]:
-        own_posts = coll_users.find_one(
-            {"username": username})["user_posts"]
-        fav_posts = coll_users.find_one(
-            {"username": username})["fav_posts"]
-            
-        user_posts = coll_posts.find(
-            {"_id": {"$in": own_posts}})
-        user_favs = coll_posts.find(
-            {"_id": {"$in": fav_posts}})
+        current_user = coll_users.find_one({"username": session["user"]})["_id"]
+        user_id = coll_users.find_one({"username": username})["_id"]
 
-        return render_template(
-            "profile.html",
-            first_name=first_name,
-            user_posts=user_posts,
-            user_favs=user_favs,
-            title="Profile")
+        if current_user == user_id:
+            # Grab session user's name from database
+            first_name = coll_users.find_one(
+                {"username": session["user"]})["first_name"]
+        
+            # Grabs user posts and favourites from database
+            own_posts = coll_users.find_one(
+                {"username": username})["user_posts"]
+            fav_posts = coll_users.find_one(
+                {"username": username})["fav_posts"]
+                
+            favourites = coll_users.find_one(
+                {"username": session["user"]})["fav_posts"]
+                    
+            user_posts = coll_posts.find(
+                {"_id": {"$in": own_posts}})
+            user_favs = coll_posts.find(
+                {"_id": {"$in": fav_posts}})
 
-    return redirect(url_for("login"))
+            return render_template(
+                "profile.html",
+                first_name=first_name,
+                user_posts=user_posts,
+                user_favs=user_favs,
+                favourites=favourites,
+                title="Profile")
+
+        else:
+            flash("Sorry! You're not authorised to view that page")
+            return redirect(url_for("get_posts"))
+    
+    else:
+        flash("Sorry! You need to be logged in to view that page")
+        return redirect(url_for("login"))
 
 
 # Logout function
@@ -314,7 +334,6 @@ def get_categories():
         "categories.html", 
         categories=categories, 
         title="Blog Categories")
-
 
 # Create new category function
 @app.route("/new_category", methods=["GET", "POST"])
