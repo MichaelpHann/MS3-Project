@@ -125,29 +125,29 @@ This application is connected to MongoDB Atlas.
 
 The following steps were taken to create the application’s database and database collections:
 
-1.Create an account and login to [MongoDB Atlas](https://mongodb.com)
-2.Select the option to create a **New Project** and complete required input fields
+1. Create an account and login to [MongoDB Atlas](https://mongodb.com)
+2. Select the option to create a **New Project** and complete required input fields
 IMAGE
-3.Select the option to **Build a Cluster** and then **Create a Cluster** (a Share Cluster (free) should be sufficient
+3. Select the option to **Build a Cluster** and then **Create a Cluster** (a Share Cluster (free) should be sufficient
 IMG x 2 
-4.Select a Cloud Provider (developer selected AWS for this project) and Region (nearest region to your location that is free)
+4. Select a Cloud Provider (developer selected AWS for this project) and Region (nearest region to your location that is free)
 IMG
-5.Select Data Tier (developer selected M0 tier for this project)
+5. Select Data Tier (developer selected M0 tier for this project)
 IMG
-6.Add Cluster Name
-7.Click **Create Cluster**
-8.Select **Database Access** under **SECURITY** on the left-hand-side ribbon
+6. Add Cluster Name
+7. Click **Create Cluster**
+8. Select **Database Access** under **SECURITY** on the left-hand-side ribbon
 IMG
-9.Add a **New Database User**, completing all required input fields
+9. Add a **New Database User**, completing all required input fields
 IMG
-10.Select **Network Access** under **SECURITY** on the left-hand-side ribbon
-11.Add or **whitelist** IP Address (you can Allow Access from Anywhere but this is not recommended for full production apps)
+10. Select **Network Access** under **SECURITY** on the left-hand-side ribbon
+11. Add or **whitelist** IP Address (you can Allow Access from Anywhere but this is not recommended for full production apps)
 IMG
-12.Select **Clusters** under **DATA STORAGE** on the left-hand-side ribbon
+12. Select **Clusters** under **DATA STORAGE** on the left-hand-side ribbon
 IMG
-13.Select **COLLECTIONS** to add database and begin adding documents to your database collections
+13. Select **COLLECTIONS** to add database and begin adding documents to your database collections
 IMG
-14.Please see indicative database schema structure depicted earlier in this file
+14. Please see indicative database schema structure depicted earlier in this file
 
  
 ## Deployment
