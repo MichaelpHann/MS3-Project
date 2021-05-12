@@ -29,7 +29,7 @@ _____
 ## UX
  
 ### Application overview
- 
+
 The purpose of this application is to provide the user with an everyday, user-friendly publishing platform. Thee application enables users to create their own profile, publish free-form content, browse for topics of interest and curate their favourite posts.
  
 ### User stories
@@ -154,7 +154,7 @@ IMG
  
 This project was developed using Gitpod, with the repository stored on GitHub.
 
-####Creating a clone 
+#### Creating a clone 
 To clone this project from GitHub:
 1. On GitHub, navigate to the project repository - https://github.com/MichaelpHann/IFD-Milestone-Project.
 2. Under the repository name, select the green **Code** dropdown button.
