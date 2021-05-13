@@ -184,27 +184,27 @@ The project was deployed using Heroku and the live application can be found [**h
 5. Click the **Create app** button.
 
 #### Deploying an app on Heroku
-1.Upon creating an app, the user will be brought automatically to the **Deploy** tab in the app.
-2.In the **Deployment Method** section, select **GitHub**, after which a **Connect to GitHub section will appear immediately below.
+1. Upon creating an app, the user will be brought automatically to the **Deploy** tab in the app.
+2. In the **Deployment Method** section, select **GitHub**, after which a **Connect to GitHub section will appear immediately below.
 ![Deployment Method](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/2%20H-Deploy-Method.png)
-3.Search for the relevant GitHub repo using the **Search** functionality.
-4.Click **Connect**
+3. Search for the relevant GitHub repo using the **Search** functionality.
+4. Click **Connect**
 ![Connect to GitHub](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/3%20H-Connect-GH.png)
-5.The app uses configuration settings for MongoDB and secret keys for session cookies, both of which Heroku requires to enable the app to function correctly. For this, Configuration Variables or Config Vars need to be set in Heroku.
-6.Within the **Settings** tab, under the Config Vars section, select **Reveal Config Vars**.
+5. The app uses configuration settings for MongoDB and secret keys for session cookies, both of which Heroku requires to enable the app to function correctly. For this, Configuration Variables or Config Vars need to be set in Heroku.
+6. Within the **Settings** tab, under the Config Vars section, select **Reveal Config Vars**.
 ![Config Vars](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/4%20H-Config-Vars.png)
-7.A form to input Key-Value pairs that are necessary to connect to the app will be displayed.
+7. A form to input Key-Value pairs that are necessary to connect to the app will be displayed.
 
- |  KEY  |  VALUE  |
-|:-----:|:-------:|
-|   IP  | 0.0.0.0 |
-|  PORT |  5000   |
-| SECRET KEY | Randomly Generated Fort Knox Key|
-| MONGO_URI | Unique MongoDB URI |
-| MONGO_DBNAME | Unique Mongo DB name |
+  KEY  |  VALUE  
+-----|-------
+   IP  | 0.0.0.0 
+  PORT |  5000   
+ SECRET KEY | Randomly Generated Fort Knox Key
+ MONGO_URI | Unique MongoDB URI 
+ MONGO_DBNAME | Unique Mongo DB name 
  
-8.The **MONGO_URI** variable noted above can be located in the MongoDB Project, under **Cluster** and by clicking **Connect**
-9.Select **Clusters**, then **Connect**, then select **Connect your application** and finally choose your Driver and Version.....
+8. The **MONGO_URI** variable noted above can be located in the MongoDB Project, under **Cluster** and by clicking **Connect**
+9. Select **Clusters**, then **Connect**, then select **Connect your application** and finally choose your Driver and Version.....
  
 ## Credits
  
