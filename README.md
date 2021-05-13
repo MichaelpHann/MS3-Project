@@ -69,7 +69,7 @@ _____
 * [JavaScript](https://www.javascript.com/) - used to provide application interactivity.
 
 #### Database Management System
-* [MongoDB Atlas](https://www.javascript.com/) - used to
+* [MongoDB Atlas](https://www.javascript.com/) - used to..........
 
 #### Integrations & Frameworks
 * [Flask](https://www.javascript.com/) - used to 
@@ -86,7 +86,6 @@ _____
  
  
 ### Testing tools
- 
 * [Google Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools) to test the device responsiveness of the application.
 * [JSHint](https://jshint.com/) to validate the JavaScript code.
 * [JSLint](https://jshint.com/) to validate the JavaScript code.
@@ -96,7 +95,6 @@ _____
 *Google Lighthouse
  
 ## Testing
- 
 ### Implemented features
  
 1. 
@@ -203,11 +201,11 @@ KEY  |  VALUE
  MONGO_URI | Unique MongoDB URI 
  MONGO_DBNAME | Unique Mongo DB name 
 
+
 8. The **MONGO_URI** variable noted above can be located in the MongoDB Project, under **Cluster** and by clicking **Connect**
 9. Select **Clusters**, then **Connect**, then select **Connect your application** and finally choose your Driver and Version.....
  
 ## Credits
- 
 ### Technical sources
 * Some application features, including the search functionality and the sign-up/security functionality, have been replicated from the Code Institute Python/Flask/Mongodb Mini Project.
  
