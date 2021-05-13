@@ -195,14 +195,14 @@ The project was deployed using Heroku and the live application can be found [**h
 ![Config Vars](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/4%20H-Config-Vars.png)
 7. A form to input Key-Value pairs that are necessary to connect to the app will be displayed.
 
-  KEY  |  VALUE  
+KEY  |  VALUE  
 -----|-------
    IP  | 0.0.0.0 
   PORT |  5000   
  SECRET KEY | Randomly Generated Fort Knox Key
  MONGO_URI | Unique MongoDB URI 
  MONGO_DBNAME | Unique Mongo DB name 
- 
+
 8. The **MONGO_URI** variable noted above can be located in the MongoDB Project, under **Cluster** and by clicking **Connect**
 9. Select **Clusters**, then **Connect**, then select **Connect your application** and finally choose your Driver and Version.....
  
