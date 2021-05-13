@@ -127,26 +127,31 @@ The following steps were taken to create the application’s database and databa
 
 1. Create an account and login to [MongoDB Atlas](https://mongodb.com)
 2. Select the option to create a **New Project** and complete required input fields
-IMAGE
+![New Project](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/1%20MDB-New-Project.png)
 3. Select the option to **Build a Cluster** and then **Create a Cluster** (a Share Cluster (free) should be sufficient
-IMG x 2 
+![Build a Cluster](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/2%20MDB-Build-a-Cluster.png)
+![Create a Cluster](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/3%20MDB-Create-a-Cluster.png)
 4. Select a Cloud Provider (developer selected AWS for this project) and Region (nearest region to your location that is free)
-IMG
+![Cloud Provider & Region](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/4%20MDB-Cloud-Provider-Region.png)
 5. Select Data Tier (developer selected M0 tier for this project)
-IMG
+![Data Tier](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/5%20MDB-Data-Tier.png)
 6. Add Cluster Name
+![Cluster Name](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/6%20MDB-Cluster-Name.png)
 7. Click **Create Cluster**
 8. Select **Database Access** under **SECURITY** on the left-hand-side ribbon
-IMG
+![Database Access](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/7%20MDB-DB-Access.png)
 9. Add a **New Database User**, completing all required input fields
-IMG
+![New Database User](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/8%20MDB-New-DB-User.png)
+![Add New Database User](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/9%20MDB-New-DB-User.png)
 10. Select **Network Access** under **SECURITY** on the left-hand-side ribbon
 11. Add or **whitelist** IP Address (you can Allow Access from Anywhere but this is not recommended for full production apps)
-IMG
+![Add IP Address](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/10%20MDB-IP-Address.png)
+![Add IP Address Detail](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/11%20MDB-IP-Address.png)
 12. Select **Clusters** under **DATA STORAGE** on the left-hand-side ribbon
-IMG
+![Clusters](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/12%20MDB-Clusters.png)
 13. Select **COLLECTIONS** to add database and begin adding documents to your database collections
-IMG
+![Collections](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/14%20MDB-Cluster-Collections.png)
+![Create Database](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/13%20MDB-Create-DB.png)
 14. Please see indicative database schema structure depicted earlier in this file
 
  
@@ -156,14 +161,14 @@ This project was developed using Gitpod, with the repository stored on GitHub.
 
 #### Creating a clone 
 To clone this project from GitHub:
-1. On GitHub, navigate to the project repository - https://github.com/MichaelpHann/IFD-Milestone-Project.
+1. On GitHub, navigate to the project repository - https://github.com/MichaelpHann/MS3-Project.
 2. Under the repository name, select the green **Code** dropdown button.
 ![GitHub Clone](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/1%20GH-Clone.png)
 3. Highlight the URL provided or click the button to copy the URL.
 4. Open your terminal.
 5. Navigate to the working directory where the cloned repository will be placed.
 6. In the command line type `git clone` and then paste the URL (copied in Step 3) immediately after.
-  `git clone https://github.com/MichaelpHann/IFD-Milestone-Project`
+  `git clone https://github.com/MichaelpHann/MS3-Project`
 7. Press **Enter**. Your local clone will be created.
  
 For more information or guidance, please see the relevant help section [Cloning a Repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository).
@@ -175,18 +180,19 @@ The project was deployed using Heroku and the live application can be found [**h
 2. In the main body of the page, select the **New** dropdown button on the right-hand-side and select **Create new app**.
 3. Insert the desired name of your app (the name must be unique and Heroku will confirm if the chosen name is available).
 4. Select the most appropriate region based on your location.
-IMG
+![Create App](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/1%20H-Create-App.png)
 5. Click the **Create app** button.
 
 #### Deploying an app on Heroku
 1.Upon creating an app, the user will be brought automatically to the **Deploy** tab in the app.
 2.In the **Deployment Method** section, select **GitHub**, after which a **Connect to GitHub section will appear immediately below.
-IMG
+![Deployment Method](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/2%20H-Deploy-Method.png)
 3.Search for the relevant GitHub repo using the **Search** functionality.
 4.Click **Connect**
-IMG
+![Connect to GitHub](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/3%20H-Connect-GH.png)
 5.The app uses configuration settings for MongoDB and secret keys for session cookies, both of which Heroku requires to enable the app to function correctly. For this, Configuration Variables or Config Vars need to be set in Heroku.
 6.Within the **Settings** tab, under the Config Vars section, select **Reveal Config Vars**.
+![Config Vars](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/4%20H-Config-Vars.png)
 7.A form to input Key-Value pairs that are necessary to connect to the app will be displayed.
 
  |  KEY  |  VALUE  |
