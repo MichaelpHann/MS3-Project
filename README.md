@@ -158,7 +158,7 @@ This project was developed using Gitpod, with the repository stored on GitHub.
 To clone this project from GitHub:
 1. On GitHub, navigate to the project repository - https://github.com/MichaelpHann/IFD-Milestone-Project.
 2. Under the repository name, select the green **Code** dropdown button.
-IMG
+![GitHub Clone](/static/README-imgs/1 GH-Clone.png)
 3. Highlight the URL provided or click the button to copy the URL.
 4. Open your terminal.
 5. Navigate to the working directory where the cloned repository will be placed.
