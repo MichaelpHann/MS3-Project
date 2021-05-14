@@ -9,6 +9,7 @@ Live application demo can be found [**here**](https://ms3-project-mph.herokuapp.
   * [Application overview](#Application-overview)
   * [User stories](#User-stories)
   * [Design choices](#Design-choices)
+  * [Database Schema](#Database-schema)
   * [Wireframes](#Wireframes)
 * [Features](#Features)
   * [Existing features](#Existing-features)
@@ -48,6 +49,9 @@ The purpose of this application is to provide the user with an everyday, user-fr
 * Compact, clear date/weather banner to provide a simple summary for the user.
 * Use of instructive/complementary actions icons throughout. Consistent use of minimalist “chevron” icons used in buttons throughout.
 * Descriptive button labelling throughout, and a distinctive theme for “positive action” actions, e.g. Submit, Create buttons, in Lime colour.
+
+### Database schema
+![Database Schema](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/Database%20Schema.PNG)
  
 ### Wireframes
 Wireframes for this website can be accessed in my wireframes folder within this github repository - [my wireframes](https://github.com/MichaelpHann/IFD-Milestone-Project/tree/master/Wireframes)
