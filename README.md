@@ -187,7 +187,9 @@ For more information or guidance, please see the relevant help section [Cloning 
  
 The project was deployed using Heroku and the live application can be found [**here**](https://ms3-project-mph.herokuapp.com/)
  
-#### Creating an app on Heroku
+#### Deploying an app on Heroku
+
+###### Create Application
 1. Sign-up or login to Heroku at heroku.com.
 2. In the main body of the page, select the **New** dropdown button on the right-hand-side and select **Create new app**.
 3. Insert the desired name of your app (the name must be unique and Heroku will confirm if the chosen name is available).
@@ -195,17 +197,19 @@ The project was deployed using Heroku and the live application can be found [**h
 * View [Create App](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/1%20H-Create-App.png)
 5. Click the **Create app** button.
 
-#### Deploying an app on Heroku
+###### Connect to GitHub Repository
 1. Upon creating an app, the user will be brought automatically to the **Deploy** tab in the app.
 2. In the **Deployment Method** section, select **GitHub**, after which a **Connect to GitHub section will appear immediately below.
 * View [Deployment Method](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/2%20H-Deploy-Method.png)
 3. Search for the relevant GitHub repo using the **Search** functionality.
 4. Click **Connect**
 * View [Connect to GitHub](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/3%20H-Connect-GH.png)
-5. The app uses configuration settings for MongoDB and secret keys for session cookies, both of which Heroku requires to enable the app to function correctly. For this, Configuration Variables or Config Vars need to be set in Heroku.
+
+###### Setting Environment Variables
+5. This project has been built with environment variable stored in a hidden env.py file. To enable Heroku to securely read these variables, Configuration Variables or Config Vars need to be set (in Heroku).
 6. Within the **Settings** tab, under the Config Vars section, select **Reveal Config Vars**.
 * View [Config Vars](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/4%20H-Config-Vars.png)
-7. A form to input Key-Value pairs that are necessary to connect to the app will be displayed.
+7. A form to input Key-Value pairs that are necessary to connect to the app will be displayed. The key value pairs, as stored in the env.py file and shown below should be added here.
 
 KEY  |  VALUE  
 -----|-------
@@ -216,13 +220,18 @@ KEY  |  VALUE
  MONGO_DBNAME | Unique Mongo DB name 
 
 
-8. The **MONGO_URI** variable noted above can be located in the MongoDB Project, under **Cluster** and by clicking **Connect**
-9. Select **Clusters**, then **Connect**, then select **Connect your application** and finally choose your Driver and Version.....
+8. Ensure you include your onward DB Name and Password within the **MONGO_URI**. This can be found in the MONGO DB Project under **Cluster** and **Connect**
+
+###### Enable Automatic Deployment
+
+9. Click on the **Deploy** tab
+10. Under the **Automatic Deploys** section, select the branch from GitHub that you want to deploy the app from and then click **Enable Automatic Deploys**
+11. Finally, click **Deploy Branch** and once built the app will then be available by clicking the **View** button.
  
 ## Credits
 ### Technical sources
 * Some application features, including the search functionality and the sign-up/security functionality, have been replicated from the Code Institute Python/Flask/Mongodb Mini Project.
  
 ### Acknowledgements
-I would like to thank both [Sandeep Aggarwal](https://github.com/asandeep) and [Chris Quinn](xxxxx) for their guidance and constructvie feedback throughout the project.
+I would like to thank both [Sandeep Aggarwal](https://github.com/asandeep) and [Chris Quinn](https://github.com/10xOXR) for their guidance and constructvie feedback throughout the project.
  
