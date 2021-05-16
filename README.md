@@ -169,7 +169,6 @@ It would be a nice enhancement if users could write comments beneath posts in a 
 _____
  
 ## Technologies Used
- 
 #### Coding Languages
 * [HTML5](https://en.wikipedia.org/wiki/HTML5) - used to build the structure of this application.
 * [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - used for styling of the application.
@@ -197,31 +196,32 @@ _____
 * [Google Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools) to test the device responsiveness of the application.
 * [JSHint](https://jshint.com/) to validate the JavaScript code.
 * [JSLint](https://jshint.com/) to validate the JavaScript code.
+* [Esprima Syntax Validator](http://esprima.org/demo/validate.html) to validate the Javascript code.
 * [W3C CSS validation](https://jigsaw.w3.org/css-validator/) to validate CSS. 
 * [W3C Markup Validation](https://validator.w3.org/) to validate HTML code.
 * [Auto-prefixer](https://autoprefixer.github.io/) to ensure the css includes all necessary browser prefixes it needs.
-*Google Lighthouse
+* [PEP8 Online Validator](http://pep8online.com/) to ensure the Python code is fully PEP8 compliant.
  
 ## Testing
-### Code Validation
+#### Code Validation
 
-#### HTML
+###### HTML
 The [W3C Markup Validator](https://validator.w3.org/) was used to check HTML from all templates. This generated a numerber of errores due to the inability of the validator to understand Jinja templating that builds most aspects of each page. For the HTML that does not involve Jinja, no errors were found.
 
-#### CSS autoprefixer
+###### CSS autoprefixer
 The online [CSS autoprefixer](https://autoprefixer.github.io/) was used to ensure all appropriate prefixes were included. Output generated was used.
 
-#### CSS
+###### CSS
 The [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) was used to check all CSS code, with no errors found.
 
-#### Javascript
+###### Javascript
 All Javascript was passes throught the [Esprima Syntax Validator](http://esprima.org/demo/validate.html) and was found to be syntactically valid.
 
-#### Python
+###### Python
 All Python code was passed through the [PEP8 Online Validator](http://pep8online.com/) and is fully PEP8 compliant.
 
 
-### Manual testing
+#### Manual testing
  
 1. 
  
@@ -237,11 +237,13 @@ All Python code was passed through the [PEP8 Online Validator](http://pep8online
  
 7. 
  
-### Functionality
+#### Functionality
 Google Chrome Developer was the principal tool used throughout the build to test functionality and device responsiveness. Additionally, in the latter stages, application responsiveness was tested via live user testing across a range of mobile, tablet and desktop devices. All feedback provided as part of this testing has been considered and, where necessary, incorporated into the application.
  
-### Bugs
+#### Bugs
 * 
+
+_____
 
 ## Creating the Database
 
@@ -278,7 +280,8 @@ The following steps were taken to create the application’s database and databa
 * View [Create Database](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/13%20MDB-Create-DB.png)
 14. Please see indicative database schema structure depicted earlier in this file
 
- 
+_____
+
 ## Deployment
  
 This project was developed using Gitpod, with the repository stored on GitHub.
@@ -338,11 +341,15 @@ KEY  |  VALUE
 9. Click on the **Deploy** tab
 10. Under the **Automatic Deploys** section, select the branch from GitHub that you want to deploy the app from and then click **Enable Automatic Deploys**
 11. Finally, click **Deploy Branch** and once built the app will then be available by clicking the **View** button.
- 
+
+_____
+
 ## Credits
 ### Technical sources
 * Some application features, including the search functionality and the sign-up/security functionality, have been replicated from the Code Institute Python/Flask/Mongodb Mini Project.
- 
+
+_____
+
 ### Acknowledgements
 I would like to thank both [Sandeep Aggarwal](https://github.com/asandeep) and [Chris Quinn](https://github.com/10xOXR) for their guidance and constructvie feedback throughout the project.
  
