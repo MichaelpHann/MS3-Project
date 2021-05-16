@@ -5,14 +5,15 @@ Live application demo can be found [**here**](https://ms3-project-mph.herokuapp.
  
 ## Table of Contents
  
-* [UX](#UX)
-  * [Application overview](#Application-overview)
-1 [UX](#UX)
-  * [Application overview](#Application-overview)
-  * [User stories](#User-stories)
-  * [Design choices](#Design-choices)
-  * [Database Schema](#Database-schema)
-  * [Wireframes](#Wireframes)
+1. [User Experience](#user-experience)
+   - [User Stories](#stories)
+   - [The 5 Planes](#planes)
+1. [UX](#UX)
+   - [Application overview](#Application-overview)
+   - [User stories](#User-stories)
+   - [Design choices](#Design-choices)
+   - [Database Schema](#Database-schema)
+   - [Wireframes](#Wireframes)
 2 [Features](#Features)
    * [Existing features](#Existing-features)
    * [Future features](#Future-features)
