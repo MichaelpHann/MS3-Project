@@ -71,8 +71,103 @@ Wireframes for this website can be accessed in my wireframes folder within this 
  
 ### Existing features
 
+#### User status-dependent Navbar/Ribbon
+Options that a user will see displayed in the navbar are dependant on the user’s status (logged in, logged out, logged in & Admin user status).
 
- 
+Users that are not logged in will see:
+- Home
+- Sign In
+- Sign Up
+
+Users that are logged in will see:
+- Home
+- Explore
+- Profile
+- New Post
+- Sign Out
+
+User with Admin status who is logged in will see:
+- Home
+- Explore
+- Profile
+- New Post
+- Manage Categories
+- Sign Out
+
+#### Homepage
+The landing page presents a simple narrative introduction/background to the application. Additionally, a user who is not logged in will be presented with **Sign In** and **Sign Up** buttons that the user can select depending on whether they are a new or existing user. A user who is already logged in will be presented with an **Explore** button that will direct them to the **Explore** page when pressed.
+
+#### Create account
+A new user can create their own profile by selecting the **Sign Up** button on the Navbar. The user must enter their first name, last name, a username and password to create an account. There is a check in place to ensure the proposed username does not already exist on the database. There are also checks in place to ensure the username and passwords are of appropriate min and max lengths, and only contain acceptable characters. The Werkzeug package takes the input from the password form and generates a hashed password. This provides far greater security than storing passwords in plain text. The users new profile will be added to the **Users Collection** on MongoDB. A flash message will welcome the user.
+
+#### Sign In
+Users who have created an account can log into their own profile by selecting the **Sign In** button on the Navbar. The user must enter their Username and Password as stored in the database to log in, otherwise they will be presented with a message indicating that one or both elements are incorrect. A flash message will welcome the user back.
+
+#### Sign Out
+Users that have signed into the site can end their session at any time by clicking the **Sign Out** button on the Navbar. Flask will end their session using the session.pop() method and will redirect the user to the **Sign In** page.
+
+#### New Post
+A registered user who is signed into the application can create a new blog post by selecting the **New Post** button on the Navbar.
+
+The user must complete all elements of the **New Post** form including selecting a Category from the pre-populated dropdown menu, adding a blog post title and blog post content. The user will be prompted to complete all fields if they try to publish the post without them all having been completed. The published post will be stored in the **Posts Collection** in MongoDB, with the ObjectId also stored in the **user_posts** document of the specific user in the **Users Collection**. The post will be displayed on both the **Explore** page and the **USER POSTS** tab of the user’s **Profile** page (see detail below). A flash message will confirm the post was successfully published.
+
+#### Edit Post
+A registered user who is signed into their profile and who has published a post can edit their post by selecting the **Edit** button.
+
+The user can click this button when viewing their posts on either the **Explore** or **Profile** page. The user will be taken to the **Edit Post** page where any/each of the three form elements - Category, Post Title, Post Content - can be changed. Once the user confirms the changes the edited post will be stored in the **Posts Collection** on MongoDB, and the changes will be displayed on both the Explore and Profile pages. A flash message will confirm the post was successfully updated. Access restrictions mean a user cannot edit another user’s post. 
+
+#### Delete Post
+A registered user who is signed into their profile and who has published a post can delete their post by selecting the **Delete** button.
+
+The user can click this button when viewing their posts on either the **Explore** or **Profile** page. The post will be deleted from the **Posts Collection** in MongoDB and the ObjectId will be removed from the the **user_posts** document in the **Users Collection** also. Additionally, the post will no longer be displayed on either the **Explore** or **Profile** pages. A flash message will confirm the post has been deleted. Access restrictions mean a user cannot delete another user’s post. 
+
+#### Like Post / Unlike Post
+A user can “like” or “favourite” any post by clicking on the heart icon in the bottom-right of the post. Once clicked, the **favourites** document of the post in the **Posts Collection** in MongoDB is incremented by 1. Additionally, the ObjectId of the post is added to the “fav_posts” of the specific user in the **Users Collection** in MongoDB. Finally, the colour of the icon will change and the post will be added to the users **FAVOURITE POSTS** tab on their **Profile** page.
+
+If the user clicks the same icon again, return it to its original colour, the exact reverse of events described above will occur.
+
+#### New Category
+The registered user with the **Admin** username, who is signed into the application can create a new category by selecting the **Manage Categories** button on the Navbar.
+
+The user will be brought to the **Manage Categories** page where they can then select the **Create Category** button. They will be taken to the **New Category** page where they can add a new category name. A flash message will confirm the new post has been created. Once created, the category will be added to the **Categories Collection** on MongoDB and will be available to all users in the pre-populated dropdown menu in the **New Post** page. Access restrictions prevent a user who is not the “Admin” user from creating a new category.
+
+#### Edit Category
+The registered user with the **Admin** username, who is signed into the application can edit an existing category by selecting the **Manage Categories** button on the Navbar. 
+
+The user will be brought to the **Manage Categories** page where each existing category will have a corresponding **Edit** button. When selected the user will be taken to the **Edit Category** page where they can amend the category name. A flash message will confirm the the category name has been updated. The amended category will be stored in the **Categories Collection** on MongoDB. Once updated, the revised category will be available to all users in the pre-populated dropdown menu in the **New Post** page. Access restrictions prevent a user who is not the **Admin** user from creating a new category.
+
+#### Delete Category
+The registered user with the **Admin** username, who is signed into the application can edit an existing category by selecting the **Manage Categories** button on the Navbar.
+
+The user will be brought to the **Manage Categories** page where each existing category will have a corresponding **Delete** button. Once clicked the post will be deleted from the database, and its ObjectId is removed from their list of posts in their user record. The recipe is also removed from the favourites of all other users.
+
+#### Profile - User Posts
+All posts that a user has published will be displayed in the **USER POSTS** tab of their **Profile** page. The user can edit and delete these posts in the same manner as they can on the **Explore** page.
+
+If the user has not published any posts they will be presented with a placeholder message of **View all your published posts here!**.
+
+Profile - Favourite Posts
+All posts that a user has “liked” or “favourited” will be displayed in the **FAVOURITE POSTS**  tab of their **Profile** page.
+
+If the user has not “liked”/“favourited” any posts they will be presented with a placeholder message of **A place for you to curate your favourite posts!**.
+
+#### Explore - Search
+Any user that is logged in can conduct a keyword search based on the words contained with the Post Titles and Post Contents, as displayed at any point in time on the **Explore** page. A successful search will result in only those posts that contain a word matching that which was searched displayed on the **Explore** page.
+
+#### Explore - Posts
+Any user that is logged in can view all posts that have been published at any point in time on the **Explore** page.
+
+### Future features
+
+#### Enhanced search functionality
+
+
+
+#### Delete confirmation modal
+
+
+
+#### The ability to comment on posts
 _____
  
 ## Technologies Used
@@ -97,7 +192,6 @@ _____
 * [GIT](https://git-scm.com/) - used GitPod for version control.
 * [GitHub](https://github.com/) - used for hosting the repository.
 * [Heroku](https://heroku.com/) - used to deploy the live application.
- 
  
 ### Testing tools
 * [Google Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools) to test the device responsiveness of the application.
@@ -218,7 +312,6 @@ KEY  |  VALUE
  SECRET KEY | Randomly Generated Fort Knox Key
  MONGO_URI | Unique MongoDB URI 
  MONGO_DBNAME | Unique Mongo DB name 
-
 
 8. Ensure you include your onward DB Name and Password within the **MONGO_URI**. This can be found in the MONGO DB Project under **Cluster** and **Connect**
 
