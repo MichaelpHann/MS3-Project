@@ -49,7 +49,7 @@
                                                 favorite</i>
                                         </a>
                                     {% else %}
-                                        <a href="{{ url_for('add_favourite', post_id=post._id) }}" class="tooltipped" data-tooltip="Add to Favourites">
+                                        <a href="{{ url_for('add_favourite', post_id=post._id) }}" class="favourite-heart tooltipped" data-tooltip="Add to Favourites">
                                             <i class="material-icons">favorite_border</i>
                                         </a>
                                     {% endif %}
