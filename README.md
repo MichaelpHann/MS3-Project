@@ -68,7 +68,6 @@ Wireframes for this website can be accessed in my wireframes folder within this 
  
  
 ## Features
- 
 ### Existing features
 
 #### User status-dependent Navbar/Ribbon
@@ -160,14 +159,13 @@ Any user that is logged in can view all posts that have been published at any po
 ### Future features
 
 #### Enhanced search functionality
-
-
+Current users can only conduct a search on Post Title and Post Content. It would be helpful if the user could search by Category also/instead. Or if the blog posts could first be filtered by category and then the user could conduct a keyword search on the posts that remain.
 
 #### Delete confirmation modal
-
-
+In order to avoid a user accidentally deleting a post or the Admin user accidentally deleting a category it would be helpful to have a confirmatory modal in place that asks the user whether they are sure they want to delete the post/category and requires them to select Yes or No.
 
 #### The ability to comment on posts
+It would be a nice enhancement if users could write comments beneath posts in a way to could create a conversation thread.
 _____
  
 ## Technologies Used
