@@ -1,114 +1,115 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <div class="card-panel profile-card">
-                <h4 class="center-align profile-header">
-                    {{ first_name }}'s Profile
-                </h4>
-            </div>
+<div class="row">
+    <div class="col s12 m8 offset-m2">
+        <div class="card-panel profile-card">
+            <h4 class="center-align profile-header">
+                {{ first_name }}'s Profile
+            </h4>
         </div>
     </div>
-    <div class="row">
-        <div class="col s12 m8 offset-m2">
-            <ul class="tabs">
-                <li class="tab col s6">      
-                    <a href="#user_posts">User Posts</a>
-                <li class="tab col s6">
-                    <a href="#user_favourites">Favourite Posts</a>
-                </li>
-            </ul>
-            <div class="col s12" id="user_posts">
-                {% for post in user_posts %}
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="blue-text">{{ post.created_by }}</span><span> | </span><span>{{ post.category_name }}</span>
-                            <hr>
-                            <div class="card-title"><strong>{{ post.post_title }}</strong></div>
-                            <div class="post-content">{{ post.post_content }}</div>
-                            <hr>
-                            <div class="row post-actions">
-                                <div class="col s10">
-                                    {% if session.user|lower == post.created_by|lower %}
-                                            <a href="{{ url_for('edit_post', post_id=post._id) }}" class="waves-effect waves-light btn-small edit-btn transparent">
-                                                <strong>Edit</strong>
-                                                <i class="material-icons right">chevron_right</i>
-                                            </a>
-                                            <a href="{{ url_for('delete_post', post_id=post._id) }}" class="waves-effect waves-light btn-small delete-btn transparent">
-                                                <strong>Delete</strong>
-                                                <i class="material-icons right">chevron_right</i>
-                                            </a>
+</div>
+<div class="row">
+    <div class="col s12 m8 offset-m2">
+        <ul class="tabs">
+            <li class="tab col s6">      
+                <a href="#user_posts">User Posts</a>
+            <li class="tab col s6">
+                <a href="#user_favourites">Favourite Posts</a>
+            </li>
+        </ul>
+        <div class="col s12" id="user_posts">
+            {% for post in user_posts %}
+                <div class="card">
+                    <div class="card-content">
+                        <span class="blue-text">{{ post.created_by }}</span><span> | </span><span>{{ post.category_name }}</span>
+                        <hr>
+                        <div class="card-title"><strong>{{ post.post_title }}</strong></div>
+                        <div class="post-content">{{ post.post_content }}</div>
+                        <hr>
+                        <div class="row post-actions">
+                            <div class="col s10">
+                                {% if session.user|lower == post.created_by|lower %}
+                                    <a href="{{ url_for('edit_post', post_id=post._id) }}" class="waves-effect waves-light btn-small edit-btn transparent">
+                                        <strong>Edit</strong>
+                                        <i class="material-icons right">chevron_right</i>
+                                    </a>
+                                    <a href="{{ url_for('delete_post', post_id=post._id) }}" class="waves-effect waves-light btn-small delete-btn transparent">
+                                        <strong>Delete</strong>
+                                        <i class="material-icons right">chevron_right</i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="col s2">
+                                {% if session.user %}
+                                    {% if post._id in fav_posts %}
+                                        <a href="{{ url_for('remove_favourite', post_id=post._id) }}" class="tooltipped favourite-heart" data-tooltip="Remove from Favourites">
+                                            <i class="material-icons">
+                                                favorite</i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ url_for('add_favourite', post_id=post._id) }}" class="tooltipped" data-tooltip="Add to Favourites">
+                                            <i class="material-icons">favorite_border</i>
+                                        </a>
                                     {% endif %}
-                                </div>
-                                <div class="col s2">
-                                    {% if session.user %}
-                                        {% if post._id in fav_posts %}
-                                            <a href="{{ url_for('remove_favourite', post_id=post._id) }}" class="tooltipped favourite-heart" data-tooltip="Remove from Favourites">
-                                                <i class="material-icons">
-                                                    favorite</i>
-                                            </a>
-                                        {% else %}
-                                            <a href="{{ url_for('add_favourite', post_id=post._id) }}" class="tooltipped" data-tooltip="Add to Favourites">
-                                                <i class="material-icons">favorite_border</i>
-                                            </a>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
-                {% else %}
-                    <div class="card selection-empty">
-                        <h6 class="center-align ">View all your published posts here!</h6>
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="col s12" id="user_favourites">
-                {% for post in user_favs %}
-                    <div class="card">
-                        <div class="card-content">
-                            <span class="blue-text">{{ post.created_by }}</span><span> | </span><span>{{ post.category_name }}</span>
-                            <hr>
-                            <div class="card-title"><strong>{{ post.post_title }}</strong></div>
-                            <div class="post-content">{{ post.post_content }}</div>
-                            <hr>
-                            <div class="row post-actions">
-                                <div class="col s10">
-                                    {% if session.user|lower == post.created_by|lower %}
-                                            <a href="{{ url_for('edit_post', post_id=post._id) }}" class="waves-effect waves-light btn-small edit-btn transparent">
-                                                <strong>Edit</strong>
-                                                <i class="material-icons right">chevron_right</i>
-                                            </a>
-                                            <a href="{{ url_for('delete_post', post_id=post._id) }}" class="waves-effect waves-light btn-small delete-btn transparent">
-                                                <strong>Delete</strong>
-                                                <i class="material-icons right">chevron_right</i>
-                                            </a>
+                </div>
+            {% else %}
+                <div class="card selection-empty">
+                    <h6 class="center-align ">View all your published posts here!</h6>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col s12" id="user_favourites">
+            {% for post in user_favs %}
+                <div class="card">
+                    <div class="card-content">
+                        <span class="blue-text">{{ post.created_by }}</span><span> | </span><span>{{ post.category_name }}</span>
+                        <hr>
+                        <div class="card-title"><strong>{{ post.post_title }}</strong></div>
+                        <div class="post-content">{{ post.post_content }}</div>
+                        <hr>
+                        <div class="row post-actions">
+                            <div class="col s10">
+                                {% if session.user|lower == post.created_by|lower %}
+                                    <a href="{{ url_for('edit_post', post_id=post._id) }}" class="waves-effect waves-light btn-small edit-btn transparent">
+                                        <strong>Edit</strong>
+                                        <i class="material-icons right">chevron_right</i>
+                                    </a>
+                                    <a href="{{ url_for('delete_post', post_id=post._id) }}" class="waves-effect waves-light btn-small delete-btn transparent">
+                                        <strong>Delete</strong>
+                                        <i class="material-icons right">chevron_right</i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                            <div class="col s2">
+                                {% if session.user %}
+                                    {% if post._id in favourites %}
+                                        <a href="{{ url_for('remove_favourite', post_id=post._id) }}" class="tooltipped favourite-heart" data-tooltip="Remove from Favourites">
+                                            <i class="material-icons">
+                                                favorite</i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{{ url_for('add_favourite', post_id=post._id) }}" class="tooltipped favourite-heart" data-tooltip="Add to favourites">
+                                            <i class="material-icons">favorite_border</i>
+                                        </a>
                                     {% endif %}
-                                </div>
-                                <div class="col s2">
-                                    {% if session.user %}
-                                        {% if post._id in favourites %}
-                                            <a href="{{ url_for('remove_favourite', post_id=post._id) }}" class="tooltipped favourite-heart" data-tooltip="Remove from Favourites">
-                                                <i class="material-icons">
-                                                    favorite</i>
-                                            </a>
-                                        {% else %}
-                                            <a href="{{ url_for('add_favourite', post_id=post._id) }}" class="tooltipped favourite-heart" data-tooltip="Add to favourites">
-                                                <i class="material-icons">favorite_border</i>
-                                            </a>
-                                        {% endif %}
-                                    {% endif %}
-                                </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
-                {% else %}
-                    <div class="card selection-empty">
-                        <h6 class="center-align">A place for you to curate your favourite posts!</h6>
-                    </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% else %}
+                <div class="card selection-empty">
+                    <h6 class="center-align">A place for you to curate your favourite posts!</h6>
+                </div>
+            {% endfor %}
         </div>
     </div>
+</div>
+    
 {% endblock content %}

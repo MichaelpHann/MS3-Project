@@ -1,7 +1,5 @@
 {% extends "base.html" %}
-
 {% block content %}
-    
     
 <div class="row">
     <div class="col s12 m8 offset-m2">
@@ -16,7 +14,6 @@
                     <h5 class="center-align blue-grey-text sub-title">
                         the everyday publishing platform
                     </h5>
-                    
                     <div class="center-align homepage-btns-row">
                         {% if session.user %}
                             <a href="{{ url_for('get_posts') }}" class="btn homepage-signin-btn">
