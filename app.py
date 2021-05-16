@@ -1,6 +1,6 @@
 import os
 from flask import (
-    Flask, flash, render_template, 
+    Flask, flash, render_template,
     redirect, request, session, url_for)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -44,9 +44,9 @@ def get_posts():
     favourites = coll_users.find_one(
             {"username": session["user"]})["fav_posts"]
     return render_template(
-        "posts.html", 
-        posts=posts, 
-        favourites=favourites, 
+        "posts.html",
+        posts=posts,
+        favourites=favourites,
         title="Blogs")
 
 
@@ -77,7 +77,6 @@ def signup():
         # Check if username already exists in database
         existing_user = coll_users.find_one(
             {"username": request.form.get("username").lower()})
-       
         if existing_user:
             flash("Username already exists")
             return redirect(url_for("signup"))
@@ -119,12 +118,12 @@ def login():
         if existing_user:
             # Ensure hashed password matches user input
             if check_password_hash(
-                existing_user["password"], request.form.get("password")):
-                    session["user"] = request.form.get("username").lower()
-                    flash("Welcome back, {}".format(
-                        request.form.get("username")))
-                    return redirect(url_for(
-                        "profile", username=session["user"], title="Profile"))
+            existing_user["password"], request.form.get("password")):
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome back, {}".format(
+                    request.form.get("username")))
+                return redirect(url_for(
+                    "profile", username=session["user"], title="Profile"))
             else:
                 # Invalid password match
                 flash("Incorrect Username and/or Password")
@@ -149,23 +148,25 @@ def profile(username):
     them on the rendered Profile page.
     """
     if session["user"]:
-        current_user = coll_users.find_one({"username": session["user"]})["_id"]
-        user_id = coll_users.find_one({"username": username})["_id"]
+        current_user = coll_users.find_one(
+            {"username": session["user"]})["_id"]
+        user_id = coll_users.find_one(
+            {"username": username})["_id"]
 
         if current_user == user_id:
             # Grab session user's name from database
             first_name = coll_users.find_one(
                 {"username": session["user"]})["first_name"]
-        
+
             # Grabs user posts and favourites from database
             own_posts = coll_users.find_one(
                 {"username": username})["user_posts"]
             fav_posts = coll_users.find_one(
                 {"username": username})["fav_posts"]
-                
+
             favourites = coll_users.find_one(
                 {"username": session["user"]})["fav_posts"]
-                    
+
             user_posts = coll_posts.find(
                 {"_id": {"$in": own_posts}})
             user_favs = coll_posts.find(
@@ -182,7 +183,7 @@ def profile(username):
         else:
             flash("Sorry! You're not authorised to view that page")
             return redirect(url_for("get_posts"))
-    
+
     else:
         flash("Sorry! You need to be logged in to view that page")
         return redirect(url_for("login"))
@@ -228,14 +229,14 @@ def new_post():
             {"_id": ObjectId(poster)},
             {"$push": {"user_posts": insertPost.inserted_id}}
         )
-        
+
         flash("Post Successfully Published!")
         return redirect(url_for("get_posts", post_id=insertPost.inserted_id))
 
     categories = coll_categories.find().sort("category_name", 1)
     return render_template(
-        "new_post.html", 
-        categories=categories, 
+        "new_post.html",
+        categories=categories,
         title="New Post")
 
 
@@ -261,9 +262,9 @@ def edit_post(post_id):
     post = coll_posts.find_one({"_id": ObjectId(post_id)})
     categories = coll_categories.find().sort("category_name", 1)
     return render_template(
-        "edit_post.html", 
-        post=post, 
-        categories=categories, 
+        "edit_post.html",
+        post=post,
+        categories=categories,
         title="Edit Post")
 
 
@@ -299,7 +300,7 @@ def add_favourite(post_id):
         user = coll_users.find_one(
             {"username": session["user"]})["_id"]
         coll_users.update_one(
-            {"_id": ObjectId(user)}, 
+            {"_id": ObjectId(user)},
             {"$push": {"fav_posts": ObjectId(post_id)}})
         coll_posts.update(
             {"_id": ObjectId(post_id)}, {"$inc": {"favourites": 1}})
@@ -315,7 +316,7 @@ def remove_favourite(post_id):
         user = coll_users.find_one(
             {"username": session["user"]})["_id"]
         coll_users.update_one(
-            {"_id": ObjectId(user)}, 
+            {"_id": ObjectId(user)},
             {"$pull": {"fav_posts": ObjectId(post_id)}})
         coll_posts.update(
             {"_id": ObjectId(post_id)}, {"$inc": {"favourites": -1}})
@@ -331,9 +332,10 @@ def get_categories():
     """
     categories = list(coll_categories.find().sort("category_name", 1))
     return render_template(
-        "categories.html", 
-        categories=categories, 
+        "categories.html",
+        categories=categories,
         title="Blog Categories")
+
 
 # Create new category function
 @app.route("/new_category", methods=["GET", "POST"])
@@ -372,8 +374,8 @@ def edit_category(category_id):
 
     category = coll_categories.find_one({"_id": ObjectId(category_id)})
     return render_template(
-        "edit_category.html", 
-        category=category, 
+        "edit_category.html",
+        category=category,
         title="Edit Category")
 
 

@@ -173,13 +173,15 @@ _____
 #### Coding Languages
 * [HTML5](https://en.wikipedia.org/wiki/HTML5) - used to build the structure of this application.
 * [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets) - used for styling of the application.
+* [Python](https://www.python.org/) - an interpreted, high-level, general-purpose language, used for all backend functions of this project.
 * [JavaScript](https://www.javascript.com/) - used to provide application interactivity.
 
 #### Database Management System
-* [MongoDB Atlas](https://www.javascript.com/) - non-relational database used to store app and user data.
+* [MongoDB Atlas](https://www.javascript.com/) - MongoDB Atlas is the online host for remote MongoDB's NoSQL document-oriented databases.
 
 #### Integrations & Frameworks
-* [Flask](https://www.javascript.com/) - micro web framework used to build web application.
+* [Flask](https://www.javascript.com/) - templating micro framework used to build web application.
+* [PyMongo](https://pypi.org/project/pymongo/) - PyMongo is a Python distribution containing tools for working with MongoDB.
 * Jinja - web templating engine for Python.
 * [jQuery](https://www.javascript.com/) - used to provide application interactivity and simplify DOM manipulation.
 * [Materialize CSS](https://materializecss.com/) - used to provide responsive frontend framework.
@@ -201,7 +203,25 @@ _____
 *Google Lighthouse
  
 ## Testing
-### Implemented features
+### Code Validation
+
+#### HTML
+The [W3C Markup Validator](https://validator.w3.org/) was used to check HTML from all templates. This generated a numerber of errores due to the inability of the validator to understand Jinja templating that builds most aspects of each page. For the HTML that does not involve Jinja, no errors were found.
+
+#### CSS autoprefixer
+The online [CSS autoprefixer](https://autoprefixer.github.io/) was used to ensure all appropriate prefixes were included. Output generated was used.
+
+#### CSS
+The [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) was used to check all CSS code, with no errors found.
+
+#### Javascript
+All Javascript was passes throught the [Esprima Syntax Validator](http://esprima.org/demo/validate.html) and was found to be syntactically valid.
+
+#### Python
+All Python code was passed through the [PEP8 Online Validator](http://pep8online.com/) and is fully PEP8 compliant.
+
+
+### Manual testing
  
 1. 
  
