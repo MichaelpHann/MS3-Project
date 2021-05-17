@@ -28,6 +28,7 @@ coll_categories = mongo.db.categories
 @app.route("/homepage")
 def homepage():
     """
+    Displays the application homepage.
     """
     return render_template("homepage.html", title="Home")
 
@@ -294,7 +295,11 @@ def delete_post(post_id):
 @app.route("/add_favourite/<post_id>")
 def add_favourite(post_id):
     """
-
+    Identifies the current user's ObjectId and the "liked"
+    post's ObjectId. Pushes the "liked" post's ObjectId
+    to the user's fav_posts document in the User Collection
+    in MongoDB. Also increments the post's favourites
+    document in the Posts Collection by one.
     """
     if session["user"]:
         user = coll_users.find_one(
@@ -311,6 +316,12 @@ def add_favourite(post_id):
 @app.route("/remove_favourite/<post_id>")
 def remove_favourite(post_id):
     """
+    Identifies the current user's ObjectId and the
+    "unliked" post's ObjectId. Pulls the "unliked" post's
+    ObjectId from the user's fav_posts document in the User
+    Collection in MongoDB. Also decrements the post's
+    favourites
+    document in the Posts Collection by one.
     """
     if session["user"]:
         user = coll_users.find_one(
