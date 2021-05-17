@@ -66,7 +66,8 @@ The database schema illustrated above is relatively simple, containing three col
 ### Wireframes
 Wireframes for this website can be accessed in my wireframes folder within this github repository - [my wireframes](https://github.com/MichaelpHann/MS3-Project)
  
- 
+_____
+
 ## Features
 ### Existing features
 
@@ -207,7 +208,7 @@ _____
 
 ###### HTML
 The [W3C Markup Validator](https://validator.w3.org/) was used to check HTML from all templates. This generated a numerber of errores due to the inability of the validator to understand Jinja templating that builds most aspects of each page. For the HTML that does not involve Jinja, no errors were found.
-ß
+
 ###### CSS autoprefixer
 The online [CSS autoprefixer](https://autoprefixer.github.io/) was used to ensure all appropriate prefixes were included. Output generated was used.
 
@@ -222,26 +223,10 @@ All Python code was passed through the [PEP8 Online Validator](http://pep8online
 
 
 #### Manual testing
- 
-1. 
- 
-2. 
- 
-3. 
- 
-4. 
- 
-5. 
- 
-6. 
- 
-7. 
+
  
 #### Functionality
 Google Chrome Developer was the principal tool used throughout the build to test functionality and device responsiveness. Additionally, in the latter stages, application responsiveness was tested via live user testing across a range of mobile, tablet and desktop devices. All feedback provided as part of this testing has been considered and, where necessary, incorporated into the application.
- 
-#### Bugs
-* 
 
 _____
 
