@@ -224,7 +224,7 @@ All Python code was passed through the [PEP8 Online Validator](http://pep8online
 #### Manual testing
 Significant iterative manual testing was conducted on this application throughout the development process. Testing was conducted to ensure application functionality and responsiveness across a range of browers and devices.
 
-The outcome of the manual testing performed is documented [here]().
+The outcome of the manual testing performed is documented [here](https://github.com/MichaelpHann/MS3-Project/tree/master/testing).
  
 #### Functionality
 Google Chrome Developer was the principal tool used throughout the build to test functionality and device responsiveness. Additionally, in the latter stages, application responsiveness was tested via live user testing across a range of mobile, tablet and desktop devices. All feedback provided as part of this testing has been considered and, where necessary, incorporated into the application.
