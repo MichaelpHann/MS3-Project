@@ -31,7 +31,7 @@ _____
  
 ### Application overview
 
-The purpose of this application is to provide the user with an everyday, user-friendly publishing platform. Thee application enables users to create their own profile, publish free-form content, browse for topics of interest and curate their favourite posts.
+The purpose of this application is to provide the user with an everyday, user-friendly publishing platform. The application enables users to create their own profile, publish free-form content, browse for topics of interest and curate their favourite posts.
  
 ### User stories
 * As a new user I want to be able to quickly and intuitively understand how the application works, how to navigate throughout it, and what I need to do to get registered and begin using the site.
@@ -46,25 +46,24 @@ The purpose of this application is to provide the user with an everyday, user-fr
 * Contrasting header/footer vs main body colour scheme in order to frame the content on each page.
 * A minimalist user interface on the navigation bar/ribbon, that collapses for mobile functionality.
 * Subtle colour distinction between main body background colour and card-panel colours on each page. Sufficient to frame the content and direct the user’s attention without overwhelming the viewer.
-* Compact, clear date/weather banner to provide a simple summary for the user.
 * Use of instructive/complementary actions icons throughout. Consistent use of minimalist “chevron” icons used in buttons throughout.
-* Descriptive button labelling throughout, and a distinctive theme for “positive action” actions, e.g. Submit, Create buttons, in Lime colour.
+* Descriptive button labelling throughout, and a distinctive theme for “call to action" buttons, e.g. Submit, Create buttons, in Lime colour.
 
 ### Database schema
 ![Database Schema](https://github.com/MichaelpHann/MS3-Project/blob/master/static/README-imgs/Database%20Schema.PNG)
 
-This project has been built using MongoDB Atlas. MongoDB is a non-relational database that enables the storage adn retrieval of user data sent to the database.
+This project has been built using MongoDB Atlas. MongoDB is a non-relational database that enables the storage and retrieval of user data sent to the database.
 
 The database schema illustrated above is relatively simple, containing three collections, each of which contain two or more documents.
 
 * **Categories Collection** - includes reference to the category name, only. The app includes a number of preset categories, and the "Admin" user has the ability to add additional categories via the "Create Category" function.
 
-* **Posts Collection** - includes user inputs as well as data injected/retrieved from other collections. The user's form inputs when creating the blog post are strings and populate "post_title" and "post_content" documents. The "created_by" document is a string and is populated with the username from the *Users Collection**. The "poster" document is populated with the user's ObjectId from the **User's Category**. The "favourites" document is an integer that increments or decrements each time a user adds or removes a post from their favourites.
+* **Posts Collection** - includes user inputs as well as data injected/retrieved from other collections. The user's form inputs when creating the blog post are strings and populate "post_title" and "post_content" documents. The "created_by" document is a string and is populated with the username from the **Users Collection**. The "poster" document is populated with the user's ObjectId from the **Users Collection**. The "favourites" document is an integer that increments or decrements each time a user adds or removes a post from their favourites.
 
 * **Users Collection** - also includes user inputs as well as data injected/retrieved from other collections. Inputs from the user sign-up form will be the first posting of the "first_name", "last_name", "username" and "password" string documents. These will be accessed/referred to each time the user signs into the app as well as if the user publishes a post. The "user_posts" document is an array and stores the ObjectId of each blog post that the user publishes. This array will be accessed and rendered to the user's profile page, displaying each of the user's posts. The "fav_posts" document is also an array and stores the ObjectId of each blog post that the user 'likes'. This array will be accessed and rendered to the user's profile page, displaying each of the user's "favourited" posts.
  
 ### Wireframes
-Wireframes for this website can be accessed in my wireframes folder within this github repository - [my wireframes](https://github.com/MichaelpHann/MS3-Project)
+Wireframes for this website can be accessed in my wireframes folder within this github repository - [my wireframes](https://github.com/MichaelpHann/MS3-Project/tree/master/Wireframes)
  
 _____
 
@@ -95,7 +94,7 @@ User with Admin status who is logged in will see:
 - Sign Out
 
 ###### Homepage
-The landing page presents a simple narrative introduction/background to the application. Additionally, a user who is not logged in will be presented with **Sign In** and **Sign Up** buttons that the user can select depending on whether they are a new or existing user. A user who is already logged in will be presented with an **Explore** button that will direct them to the **Explore** page when pressed.
+The landing page presents a simple narrative introduction/background to the application. Additionally, a user who is not logged in will be presented with **Sign In** and **Sign Up** buttons that they can select depending on whether they are a new or existing user. A user who is already logged in will be presented with an **Explore** button that will direct them to the **Explore** page when pressed.
 
 ###### Create account
 A new user can create their own profile by selecting the **Sign Up** button on the Navbar. The user must enter their first name, last name, a username and password to create an account. There is a check in place to ensure the proposed username does not already exist on the database. There are also checks in place to ensure the username and passwords are of appropriate min and max lengths, and only contain acceptable characters. The Werkzeug package takes the input from the password form and generates a hashed password. This provides far greater security than storing passwords in plain text. The users new profile will be added to the **Users Collection** on MongoDB. A flash message will welcome the user.
@@ -223,7 +222,9 @@ All Python code was passed through the [PEP8 Online Validator](http://pep8online
 
 
 #### Manual testing
+Significant iterative manual testing was conducted on this application throughout the development process. Testing was conducted to ensure application functionality and responsiveness across a range of browers and devices.
 
+The outcome of the manual testing performed is documented [here]().
  
 #### Functionality
 Google Chrome Developer was the principal tool used throughout the build to test functionality and device responsiveness. Additionally, in the latter stages, application responsiveness was tested via live user testing across a range of mobile, tablet and desktop devices. All feedback provided as part of this testing has been considered and, where necessary, incorporated into the application.
